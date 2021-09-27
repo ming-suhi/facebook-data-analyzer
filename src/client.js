@@ -19,7 +19,7 @@ class Client {
     this.inbox = new Inbox(resolve(process.env.CATALOG_DIRECTORY, 'messages/inbox'));
   }
 
-
+  
   // Get how many messages you have encountered, including ones you've sent
   get messagesEncountered() {
 
@@ -55,13 +55,54 @@ class Client {
   }
 
 
+  // Get how many words you have sent
+  get wordsSent() {
+
+    // Declare variable for counter
+    var count = 0;
+
+    // Loop through channels
+    for(let channel of this.inbox.channels) {
+      
+      // Add messages count to counter
+      count = count + (channel.getParticipant(this.name)?.messages?.wordCount || 0);
+    }
+
+    // Return count
+    return count;
+  }
+
+
   // Get how many messages you have received
   get messagesReceived() {
 
     // Return difference of encountered messages and sent messages
     return this.messagesEncountered - this.messagesSent;
   }
+  
+  // Get word occurences
+  get yourWordOccurences() {
 
+    // Declare variable for building
+    var occurences = [];
+
+    // Loop through channels
+    for(let channel of this.inbox.channels) {
+
+      // Loop through channel word occurences
+      for(let element of channel.getParticipant(this.name)?.messages?.wordOccurences || []) {
+
+        // Get reference from occurences
+      const reference = occurences.find(occurence => occurence.name == element.name);
+
+      // Create object if does not exits and increment if exist
+      (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
+      }
+    }
+
+    // Return occurences
+    return occurences.sort((a, b) => b.count - a.count).slice(0, 100);
+  }
 
   // Return channels ranked by total messages
   get channelsRankedByTotalMessages() {
