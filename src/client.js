@@ -12,8 +12,10 @@ class Client {
   constructor() {
 
     // Get user full name to be used to filter messages
-    const profile = require(resolve(process.env.CATALOG_DIRECTORY, 'profile_information/profile_information.json'));
-    this.name = profile[Object.keys(profile)[0]].name.full_name;
+    var profile = require(resolve(process.env.CATALOG_DIRECTORY, 'profile_information/profile_information.json'));
+    var profile = profile[Object.keys(profile)[0]];
+    this.name = profile.name.full_name;
+    this.createdOn = new Date(profile.registration_timestamp).toDateString();
 
     // Create inbox instance
     this.inbox = new Inbox(resolve(process.env.CATALOG_DIRECTORY, 'messages/inbox'));
@@ -103,6 +105,31 @@ class Client {
     // Return occurences
     return occurences.sort((a, b) => b.count - a.count).slice(0, 100);
   }
+
+
+  get yourFavoriteHours() {
+
+    // Declare variable for building
+    var occurences = [];
+
+    // Loop through channels
+    for(let channel of this.inbox.channels) {
+
+      // Loop through channel word occurences
+      for(let element of channel.getParticipant(this.name)?.messages?.favoriteHours || []) {
+
+      // Get reference from occurences
+      const reference = occurences.find(occurence => occurence.name == element.name);
+
+      // Create object if does not exits and increment if exist
+      (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
+      }
+    }
+
+    // Return occurences
+    return occurences.sort((a, b) => b.count - a.count);
+  }
+
 
   // Return channels ranked by total messages
   get channelsRankedByTotalMessages() {

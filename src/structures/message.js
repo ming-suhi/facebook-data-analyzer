@@ -6,11 +6,11 @@ class Messages {
     // Messages
     this.messages = [];
 
-    // Loop through messages json
+    // Loop through messages
     for(let message of messages) {
 
       // Create message from json
-      this.messages.push(new Message(message));
+      message instanceof Message ? this.messages.push(message) : this.messages.push(new Message(message));
     }
   }
 
@@ -78,6 +78,27 @@ class Messages {
     // Return occurences
     return occurences.sort((a, b) => b.count - a.count);
   }
+
+
+  // Rank hours by no of messages
+  get favoriteHours() {
+
+    // Declare variable to store occurences
+    const occurences = [];
+
+    // Loop through matched words
+    for(let message of this.messages) {
+
+      // Get reference from stats
+      const reference = occurences.find(occurence => occurence.name == message.hour);
+
+      // Create object if does not exits and increment if exist
+      (!reference) ? occurences.push({name: message.hour, count: 1}) : reference.count = reference.count + 1;
+    }
+
+    // Return occurences
+    return occurences.sort((a, b) => b.count - a.count);
+  }
 }
 
 
@@ -88,6 +109,15 @@ class Message {
 
     // The name of the author
     this.sender = message.sender_name;
+
+    // The date object the message was sent
+    this.date = new Date(message.timestamp_ms);
+
+    // The year the message was sent
+    this.year = this.date.getFullYear();
+
+    // The hour the message was sent
+    this.hour = this.date.getHours();
 
     // The content of the message
     this.content = message.content;
