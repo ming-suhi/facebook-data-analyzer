@@ -82,6 +82,7 @@ class Client {
     return this.messagesEncountered - this.messagesSent;
   }
   
+
   // Get word occurences
   get yourWordOccurences() {
 
@@ -114,15 +115,39 @@ class Client {
 
     // Loop through channels
     for(let channel of this.inbox.channels) {
+  
+      // Loop through messages
+      for(let message of channel.getParticipant(this.name)?.messages?.messages || []) {
 
-      // Loop through channel word occurences
-      for(let element of channel.getParticipant(this.name)?.messages?.favoriteHours || []) {
+        // Get reference from stats
+        const reference = occurences.find(occurence => occurence.name == message.hour);
 
-      // Get reference from occurences
-      const reference = occurences.find(occurence => occurence.name == element.name);
+        // Create object if does not exits and increment if exist
+        (!reference) ? occurences.push({name: message.hour, count: 1}) : reference.count = reference.count + 1;
+      }
+    }
 
-      // Create object if does not exits and increment if exist
-      (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
+    // Return occurences
+    return occurences.sort((a, b) => b.count - a.count);
+  }
+
+
+  get yourMessagesPerYear() {
+
+    // Declare variable for building
+    var occurences = [];
+
+    // Loop through channels
+    for(let channel of this.inbox.channels) {
+  
+      // Loop through messages
+      for(let message of channel.getParticipant(this.name)?.messages?.messages || []) {
+
+        // Get reference from stats
+        const reference = occurences.find(occurence => occurence.name == message.year);
+
+        // Create object if does not exits and increment if exist
+        (!reference) ? occurences.push({name: message.year, count: 1}) : reference.count = reference.count + 1;
       }
     }
 
