@@ -111,7 +111,32 @@ class Client {
   get yourFavoriteHours() {
 
     // Declare variable for building
-    var occurences = [];
+    const occurences = [
+      {name: 0, count: 0},
+      {name: 1, count: 0},
+      {name: 2, count: 0},
+      {name: 3, count: 0},
+      {name: 4, count: 0},
+      {name: 5, count: 0},
+      {name: 6, count: 0},
+      {name: 7, count: 0},
+      {name: 8, count: 0},
+      {name: 9, count: 0},
+      {name: 10, count: 0},
+      {name: 11, count: 0},
+      {name: 12, count: 0},
+      {name: 13, count: 0},
+      {name: 14, count: 0},
+      {name: 15, count: 0},
+      {name: 16, count: 0},
+      {name: 17, count: 0},
+      {name: 18, count: 0},
+      {name: 19, count: 0},
+      {name: 20, count: 0},
+      {name: 21, count: 0},
+      {name: 22, count: 0},
+      {name: 23, count: 0},
+    ];
 
     // Loop through channels
     for(let channel of this.inbox.channels) {
@@ -122,13 +147,13 @@ class Client {
         // Get reference from stats
         const reference = occurences.find(occurence => occurence.name == message.hour);
 
-        // Create object if does not exits and increment if exist
-        (!reference) ? occurences.push({name: message.hour, count: 1}) : reference.count = reference.count + 1;
+        // Increment reference
+        reference.count = reference.count + 1;
       }
     }
 
     // Return occurences
-    return occurences.sort((a, b) => b.count - a.count);
+    return occurences;
   }
 
 
