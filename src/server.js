@@ -1,7 +1,11 @@
 const express = require('express');
-const UserRoutes = require('./routes/user');
+const userRouter = require('./routes/user');
+const messagesRouter = require('./routes/messages');
+const channelsRouter = require('./routes/channels');
+const wordsRouter = require('./routes/words');
 const Client = require('./client');
 
+// Create client
 const client = new Client();
 
 // Create express app
@@ -17,13 +21,14 @@ app.use(express.static(__dirname));
 
 // Render page
 app.get('/', (req, res) => {
-  res.render('index', {
-    client: client
-  });
+  res.render('index', {client: client});
 });
 
 // Attach routes
-app.use('/', UserRoutes);
+app.use('/', userRouter);
+app.use('/', messagesRouter);
+app.use('/', channelsRouter);
+app.use('/', wordsRouter);
 
 // Start server
 app.listen(8000, () => console.log("Server listening on port 8000"));

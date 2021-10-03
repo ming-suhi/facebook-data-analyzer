@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const { resolve } = require("path");
 const Inbox = require('./structures/channels.js');
+const { hoursOccurenceTemplate } = require('./structures/templates.js');
 
 // Setup environment variables
 dotenv.config();
@@ -15,7 +16,7 @@ class Client {
     var profile = require(resolve(process.env.CATALOG_DIRECTORY, 'profile_information/profile_information.json'));
     var profile = profile[Object.keys(profile)[0]];
     this.name = profile.name.full_name;
-    this.createdOn = new Date(profile.registration_timestamp).toDateString();
+    this.registeredDate = new Date(profile.registration_timestamp).toDateString();
 
     // Create inbox instance
     this.inbox = new Inbox(resolve(process.env.CATALOG_DIRECTORY, 'messages/inbox'));
@@ -84,7 +85,7 @@ class Client {
   
 
   // Get word occurences
-  get yourWordOccurences() {
+  get wordOccurences() {
 
     // Declare variable for building
     var occurences = [];
@@ -108,35 +109,10 @@ class Client {
   }
 
 
-  get yourFavoriteHours() {
+  get messagesSentPerHour() {
 
     // Declare variable for building
-    const occurences = [
-      {name: 0, count: 0},
-      {name: 1, count: 0},
-      {name: 2, count: 0},
-      {name: 3, count: 0},
-      {name: 4, count: 0},
-      {name: 5, count: 0},
-      {name: 6, count: 0},
-      {name: 7, count: 0},
-      {name: 8, count: 0},
-      {name: 9, count: 0},
-      {name: 10, count: 0},
-      {name: 11, count: 0},
-      {name: 12, count: 0},
-      {name: 13, count: 0},
-      {name: 14, count: 0},
-      {name: 15, count: 0},
-      {name: 16, count: 0},
-      {name: 17, count: 0},
-      {name: 18, count: 0},
-      {name: 19, count: 0},
-      {name: 20, count: 0},
-      {name: 21, count: 0},
-      {name: 22, count: 0},
-      {name: 23, count: 0},
-    ];
+    const occurences = hoursOccurenceTemplate;
 
     // Loop through channels
     for(let channel of this.inbox.channels) {
@@ -157,7 +133,7 @@ class Client {
   }
 
 
-  get yourMessagesPerYear() {
+  get messagesSentPerYear() {
 
     // Declare variable for building
     var occurences = [];
@@ -177,12 +153,12 @@ class Client {
     }
 
     // Return occurences
-    return occurences.sort((a, b) => b.count - a.count);
+    return occurences.sort((a, b) => b.name - a.name);
   }
 
 
-  // Return channels ranked by total messages
-  get channelsRankedByTotalMessages() {
+  // Return channels by total messages
+  get channelsByTotalMessages() {
 
     // Declare variable to store channels
     var channels = [];
@@ -202,8 +178,8 @@ class Client {
   }
 
 
-  // Return channels ranked by your sent messages
-  get channelsRankedByYourSentMessages() {
+  // Return channels by your sent messages
+  get channelsByYourSentMessages() {
 
     // Declare variable to store channels
     var channels = [];

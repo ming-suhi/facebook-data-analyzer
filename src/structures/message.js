@@ -1,3 +1,5 @@
+const { hoursOccurenceTemplate } = require("./templates");
+
 // Structure to group messages
 class Messages {
 
@@ -84,32 +86,7 @@ class Messages {
   get favoriteHours() {
 
     // Declare variable to store occurences
-    const occurences = [
-      {name: 0, count: 0},
-      {name: 1, count: 0},
-      {name: 2, count: 0},
-      {name: 3, count: 0},
-      {name: 4, count: 0},
-      {name: 5, count: 0},
-      {name: 6, count: 0},
-      {name: 7, count: 0},
-      {name: 8, count: 0},
-      {name: 9, count: 0},
-      {name: 10, count: 0},
-      {name: 11, count: 0},
-      {name: 12, count: 0},
-      {name: 13, count: 0},
-      {name: 14, count: 0},
-      {name: 15, count: 0},
-      {name: 16, count: 0},
-      {name: 17, count: 0},
-      {name: 18, count: 0},
-      {name: 19, count: 0},
-      {name: 20, count: 0},
-      {name: 21, count: 0},
-      {name: 22, count: 0},
-      {name: 23, count: 0}
-    ];
+    const occurences = hoursOccurenceTemplate;
 
     // Loop through matched words
     for(let message of this.messages) {

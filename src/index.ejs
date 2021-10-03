@@ -30,7 +30,7 @@
       <div class="container card secondary-color rounded border-0">
         <div class="card-body text-center">
           <h3><strong><%= client.name %></strong></h3>
-          <small>Account created on <%= client.createdOn %></small>
+          <small>Account created on <%= client.registeredDate %></small>
         </div>
       </div>
 
@@ -54,20 +54,25 @@
               <strong><%=client.messagesSent%></strong> messages sent
             </h6>
           </div>
-
-          <!-- Favorite Hours -->
-          <canvas class="card-body text-center" id="favoriteHoursChart"></canvas>
         </div>
 
         <!-- Second Row -->
         <div class="row">
+          <!-- Favorite Hours -->
+          <canvas class="card-body" id="favoriteHoursChart"></canvas>
         </div>
         
+        <!-- Third Row -->
+        <div class="row">
+          <!-- Favorite Hours -->
+          <canvas class="card-body" id="yearsRankedChart"></canvas>
+        </div>
       </div>
 
     </div>
 
 
   </body>
+  <script src="scripts/utilities.js"></script>
   <script src="scripts/index.js"></script>
 </html>
