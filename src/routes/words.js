@@ -9,7 +9,7 @@ const client = new Client();
 
 // No of words sent
 router.get('/user/words/sent', (req, res) => {
-  res.send(client.wordsSent);
+  res.send(client.wordsSent.toString());
 });
 
 // Words sent by occurences

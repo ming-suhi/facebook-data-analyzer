@@ -17,8 +17,12 @@
         background-color: #202225;
         color: #FFF;
       }
-      h6 > * {
+      h5 > * {
         color: #3377bf;
+      }
+      p {
+        color: #616161;
+        font-weight: bold;
       }
     </style>
   </head>
@@ -35,40 +39,33 @@
       </div>
 
       <!-- Statistical Information -->
-      <div class="container d-grid secondary-color rounded border-0">
+      <div class="container d-grid gap-2">
 
         <!-- First Row -->
-        <div class="row">
+        <div class="row gap-2">
 
-          <!-- 
-            Messages Encountered, 
-            Messages Sent, 
-            Messages Received, 
-            Words Sent, 
-            Group Channels 
-          -->
-          <div class="card-body text-center">
-            <h6>
-              <strong><%=client.messagesEncountered%></strong> messages, 
-              <strong><%=client.messagesReceived%></strong> messages received, 
-              <strong><%=client.messagesSent%></strong> messages sent
-            </h6>
+          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
+            <div class="row"><p id="messagesEncountered"></p></div>
+            <div class="row"><p id="messagesReceived"></p></div>
+            <div class="row"><p id="messagesSent"></p></div>
+            <div class="row"><p id="wordsSent"></p></div>
           </div>
-        </div>
 
+          <!-- Favorite Hours -->
+          <div class="col-sm-7 card-body secondary-color rounded border-0">
+            <canvas id="yearsRankedChart"></canvas>
+          </div>
+          
+        </div>
+        
         <!-- Second Row -->
-        <div class="row">
+        <div class="row secondary-color rounded border-0">
+
           <!-- Favorite Hours -->
           <canvas class="card-body" id="favoriteHoursChart"></canvas>
         </div>
-        
-        <!-- Third Row -->
-        <div class="row">
-          <!-- Favorite Hours -->
-          <canvas class="card-body" id="yearsRankedChart"></canvas>
-        </div>
-      </div>
 
+      </div>
     </div>
 
 

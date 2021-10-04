@@ -9,22 +9,22 @@ const client = new Client();
 
 // No of messages encountered 
 router.get('/user/messages/encountered', (req, res) => {
-  res.send(client.messagesEncountered);
+  res.send(client.messagesEncountered.toString());
 });
 
 // No of messages sent
 router.get('/user/messages/sent', (req, res) => {
-  res.send(client.messagesSent);
+  res.send(client.messagesSent.toString());
 });
 
 // No of messages received
 router.get('/user/messages/received', (req, res) => {
-  res.send(client.messagesReceived);
+  res.send(client.messagesReceived.toString());
 });
 
 // Hours by no of messages sent
 router.get('/user/messages/sent-per-hour/chart-data', (req, res) => {
-
+  
   // Define type
   const type = "bar";
 
@@ -69,7 +69,7 @@ router.get('/user/messages/sent-per-year/chart-data', (req, res) => {
   // Define options
   const indexAxis = "y";
   const title = {display: true, text: "Total Messages Sent Per Year"};
-  const legend = {position: "right"};
+  const legend = {position: "top"};
   const plugins = {legend, title};
 
   // Build chart
