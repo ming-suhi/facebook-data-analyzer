@@ -21,8 +21,11 @@
         color: #3377bf;
       }
       p {
-        color: #616161;
         font-weight: bold;
+        color: #666666;
+      }
+      .table {
+        color: #666666;
       }
     </style>
   </head>
@@ -44,15 +47,25 @@
         <!-- First Row -->
         <div class="row gap-2">
 
+          <!-- First Column -->
           <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
+
+            <!--
+              Messages Encountered
+              Messages Received
+              Messages Sent
+              Words Sent
+            -->
             <div class="row"><p id="messagesEncountered"></p></div>
             <div class="row"><p id="messagesReceived"></p></div>
             <div class="row"><p id="messagesSent"></p></div>
             <div class="row"><p id="wordsSent"></p></div>
           </div>
 
-          <!-- Favorite Hours -->
+          <!-- Second Column -->
           <div class="col-sm-7 card-body secondary-color rounded border-0">
+
+            <!-- Years Ranked -->
             <canvas id="yearsRankedChart"></canvas>
           </div>
           
@@ -65,11 +78,51 @@
           <canvas class="card-body" id="favoriteHoursChart"></canvas>
         </div>
 
+        <!-- Third Row -->
+        <div class="row rounded border-0 gap-2">
+
+          <!-- First Column -->
+          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
+
+            <!-- Favorite Channels -->
+            <table class="table table-borderless" id="rankedByMessages">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Channel</th>
+                  <th scope="col">Your Messages Count</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Second Column -->
+          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
+
+            <!-- Word Occurences -->
+            <table class="table table-borderless" id="rankedByOccurences">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Word</th>
+                  <th scope="col">Occurences</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
       </div>
     </div>
 
-
   </body>
+
+  <!-- Scripts -->
   <script src="scripts/utilities.js"></script>
   <script src="scripts/index.js"></script>
 </html>

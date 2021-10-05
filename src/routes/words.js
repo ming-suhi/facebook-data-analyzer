@@ -13,7 +13,7 @@ router.get('/user/words/sent', (req, res) => {
 });
 
 // Words sent by occurences
-router.get('/user/words/occurences/chart-data', (req, res) => {
+router.get('/user/words/occurences', (req, res) => {
   res.send(client.wordOccurences);
 });
 
