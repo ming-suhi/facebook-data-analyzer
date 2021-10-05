@@ -86,7 +86,7 @@ class Messages {
   get favoriteHours() {
 
     // Declare variable to store occurences
-    const occurences = hoursOccurenceTemplate;
+    const occurences = new hoursOccurenceTemplate();
 
     // Loop through matched words
     for(let message of this.messages) {

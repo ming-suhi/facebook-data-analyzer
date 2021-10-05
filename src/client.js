@@ -112,7 +112,7 @@ class Client {
   get messagesSentPerHour() {
 
     // Declare variable for building
-    const occurences = hoursOccurenceTemplate;
+    const occurences = new hoursOccurenceTemplate();
 
     // Loop through channels
     for(let channel of this.inbox.channels) {
