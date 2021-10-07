@@ -9,118 +9,126 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-      .main-color {
-        background-color: #282A2E;
-        color: #FFF;
+
+      :root {
+        --main-bg-color: #282A2E;
+        --secondary-bg-color: #202225;
+        --main-color: #FFF;
+        --secondary-color: #3377bf;
       }
-      .secondary-color {
-        background-color: #202225;
-        color: #FFF;
+      
+      body {
+        background-color: var(--main-bg-color);
+        color: var(--main-color);
       }
-      .highlights {
-        color: #3377bf;
+
+      .card {
+        border: none;
+        border-radius: 8px;
+        padding: 30px;
+        background-color: var(--secondary-bg-color);
+        color: var(--main-color);
       }
-      p > strong {
-        color: #3377bf;
-      }
-      p {
-        font-weight: bold;
-        color: #fff;
-      }
+
       .table {
-        color: #fff;
+        border: none;
+        color: var(--main-color);
+      }
+      
+      .highlights {
+        font-weight: bold;
+        color: var(--secondary-color);
+      }
+
+      .shade-1 {
+        filter: brightness(100%);;
+      }
+
+      .shade-2 {
+        filter: brightness(85%);
+      }
+
+      .shade-3 {
+        filter: brightness(70%);
       }
     </style>
   </head>
-  <body class="main-color" style="padding-top: 30px;">
+  <body class="container d-grid gap-2" style="padding: 10px;">
 
-    <div class="d-grid gap-2">
 
-      <!-- User Information -->
-      <div class="container card secondary-color rounded border-0">
-        <div class="card-body text-center">
-          <h3><strong><%= client.name %></strong></h3>
-          <small>Account created on <%= client.registeredDate %></small>
+    <div class="row card text-center">
+      <h3><strong><%= client.name %></strong></h3>
+      <small>Account created on <%= client.registeredDate %></small>
+    </div>
+
+
+    <div class="row gap-2">
+
+      <!--
+        Messages Encountered
+        Messages Received
+        Messages Sent
+        Words Sent
+      -->
+      <div class="col d-grid gap-2">
+        <div class="row card d-grid">
+          <div class="row-4"><p id="messagesEncountered"></p></div>
+          <div class="row-4"><p id="messagesReceived"></p></div>
+          <div class="row-4"><p id="messagesSent"></p></div>
+          <div class="row-4"><p id="wordsSent"></p></div>
+        </div>
+        <div class="row card d-grid">
+          <p>Made with love by ming-suhi</p>
         </div>
       </div>
 
-      <!-- Statistical Information -->
-      <div class="container d-grid gap-2">
-
-        <!-- First Row -->
-        <div class="row gap-2">
-
-          <!-- First Column -->
-          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
-
-            <!--
-              Messages Encountered
-              Messages Received
-              Messages Sent
-              Words Sent
-            -->
-            <div class="row"><p id="messagesEncountered"></p></div>
-            <div class="row"><p id="messagesReceived"></p></div>
-            <div class="row"><p id="messagesSent"></p></div>
-            <div class="row"><p id="wordsSent"></p></div>
-          </div>
-
-          <!-- Second Column -->
-          <div class="col-sm-7 card-body secondary-color rounded border-0">
-
-            <!-- Years Ranked -->
-            <canvas id="yearsRankedChart"></canvas>
-          </div>
-          
-        </div>
-        
-        <!-- Second Row -->
-        <div class="row secondary-color rounded border-0">
-
-          <!-- Favorite Hours -->
-          <canvas class="card-body" id="favoriteHoursChart"></canvas>
-        </div>
-
-        <!-- Third Row -->
-        <div class="row rounded border-0 gap-2">
-
-          <!-- First Column -->
-          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
-
-            <!-- Favorite Channels -->
-            <table class="table table-borderless" id="rankedByMessages">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Channel</th>
-                  <th scope="col">Your Messages Count</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Second Column -->
-          <div class="col-sm-4 p-5 card-body secondary-color rounded border-0 gap-4">
-
-            <!-- Word Occurences -->
-            <table class="table table-borderless" id="rankedByOccurences">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Word</th>
-                  <th scope="col">Occurences</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-
+      <!-- Years Ranked -->
+      <div class="col-8 card">
+        <canvas id="yearsRankedChart"></canvas>
       </div>
+      
+    </div>
+
+
+    <div class="row card">
+
+      <!-- Favorite Hours -->
+      <canvas id="favoriteHoursChart"></canvas>
+    </div>
+
+
+    <div class="row gap-2">
+
+      <!-- Favorite Channels -->
+      <div class="col p-5 card">
+        <table class="table table-borderless" id="rankedByMessages">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Channel</th>
+              <th scope="col">Your Messages Count</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Word Occurences -->
+      <div class="col p-5 card">
+        <table class="table table-borderless" id="rankedByOccurences">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Word</th>
+              <th scope="col">Occurences</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
   </body>

@@ -2,22 +2,22 @@ Chart.defaults.color = "#fff";
 
 fetchRoute('/user/messages/encountered', data => {
   const ctx = document.getElementById('messagesEncountered');
-  ctx.innerHTML = `<strong>${data}</strong> messages encountered`;
+  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages encountered`;
 });
 
 fetchRoute('/user/messages/received', data => {
   const ctx = document.getElementById('messagesReceived');
-  ctx.innerHTML = `<strong>${data}</strong> messages received`;
+  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages received`;
 });
 
 fetchRoute('/user/messages/sent', data => {
   const ctx = document.getElementById('messagesSent');
-  ctx.innerHTML = `<strong>${data}</strong> messages sent`;
+  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages sent`;
 });
 
 fetchRoute('/user/words/sent', data => {
   const ctx = document.getElementById('wordsSent');
-  ctx.innerHTML = `<strong>${data}</strong> words sent`;
+  ctx.innerHTML = `<strong class="highlights">${data}</strong> words sent`;
 });
 
 fetchRoute('/user/messages/sent-per-year/chart-data', data => {
@@ -36,9 +36,9 @@ fetchRoute('/user/channels/rankedByMessages', data => {
     const channel = data[channelRank];
     const row = document.createElement('tr');
     row.innerHTML = `
-    <th scope="row" ${channelRank < 3 ? 'class="highlights"' : ""}>${parseInt(channelRank) + 1}</th>
-    <td ${channelRank < 3 ? 'class="highlights"' : ""}>${channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name}</td>
-    <td ${channelRank < 3 ? 'class="highlights"' : ""}>${channel.count}</td>
+    <th scope="row" ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${parseInt(channelRank) + 1}</th>
+    <td ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name}</td>
+    <td ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${channel.count}</td>
     `
     ctx.getElementsByTagName("tbody")[0].appendChild(row);
   }
@@ -50,9 +50,9 @@ fetchRoute('/user/words/occurences', data => {
     const word = data[wordRank];
     const row = document.createElement('tr');
     row.innerHTML = `
-    <th scope="row" ${wordRank < 3 ? 'class="highlights"' : ""}>${parseInt(wordRank) + 1}</th>
-    <td ${wordRank < 3 ? 'class="highlights"' : ""}>${word.name}</td>
-    <td ${wordRank < 3 ? 'class="highlights"' : ""}>${word.count}</td>
+    <th scope="row" ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${parseInt(wordRank) + 1}</th>
+    <td ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${word.name}</td>
+    <td ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${word.count}</td>
     `
     ctx.getElementsByTagName("tbody")[0].appendChild(row);
   }
