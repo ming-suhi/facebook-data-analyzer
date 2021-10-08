@@ -8,7 +8,7 @@ Take a peek to what have been your Facebook Messenger life
 ![Preview](https://raw.githubusercontent.com/ming-suhi/facebook-data-analyzer/c5768cd32c852073808cfd5321b1dc89be90a8dc/assets/preview.png)
 
 # Features
-Listed below are the current project features and may change in the future. Make sure to ⭐ star this repo to be updated of new changes.
+Listed below are the current project features and may change in the future. Make sure to ⭐ star this repo to be able to get back to it later and or press that `watch` button to be updated of new changes.
 - Account full name
 - Account registered date
 - Messages encountered
