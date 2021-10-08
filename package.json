@@ -2,13 +2,14 @@
   "name": "@ming-suhi/facebook-data-analyzer",
   "description": "Take a peek to what have been your Facebook life",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "明suhi",
+  "license": "MIT",
   "dependencies": {
     "chart.js": "^3.5.1",
     "dotenv": "^10.0.0",
