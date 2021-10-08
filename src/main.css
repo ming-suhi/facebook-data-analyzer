@@ -1,0 +1,46 @@
+:root {
+  --main-bg-color: #282A2E;
+  --secondary-bg-color: #202225;
+  --main-color: #FFF;
+  --secondary-color: #3377bf;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  padding: 30px;
+  background-color: var(--secondary-bg-color);
+  color: var(--main-color);
+}
+
+.table {
+  border: none;
+  color: var(--main-color);
+}
+
+.highlights {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.shade-1 {
+  filter: brightness(100%);;
+}
+
+.shade-2 {
+  filter: brightness(85%);
+}
+
+.shade-3 {
+  filter: brightness(70%);
+}

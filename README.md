@@ -1,11 +1,9 @@
 # Facebook Data Analyzer
 Take a peek to what have been your Facebook Messenger life
 
-> ❗ **Note and Precaution**: The interpretation of your data is purely subjective to you, and thus can be destructive. If you believe you are one of those users, please do not proceed. The owner/developers/maintainers of this project will not be held liable for any damages(please refer to project license for more information). Above all, let us remember to practice self love.
+![Preview](https://raw.githubusercontent.com/ming-suhi/facebook-data-analyzer/c5768cd32c852073808cfd5321b1dc89be90a8dc/assets/preview.png)
 
 > ❗ **Note and Precaution**: This project is not associated with Facebook or Facebook Messenger.
-
-![Preview](https://raw.githubusercontent.com/ming-suhi/facebook-data-analyzer/c5768cd32c852073808cfd5321b1dc89be90a8dc/assets/preview.png)
 
 # Features
 Listed below are the current project features and may change in the future. Make sure to ⭐ star this repo to be able to get back to it later and or press that `watch` button to be updated of new changes.
@@ -21,6 +19,9 @@ Listed below are the current project features and may change in the future. Make
 - Table of words you frequently use
 
 # Usage
+
+> ❗ **Note and Precaution**: The interpretation of your data is purely subjective to you, and thus can be destructive. If you believe you are one of those users, please do not proceed. The owner/developers/maintainers of this project will not be held liable for any damages(please refer to project license for more information). Above all, let us remember to practice self love.
+
 The steps below will not cover the installation of `Node` and `Git`, which are prerequisites for running this project. If you want to proceed with this project, but don't have `Node` and `Git` installed, please refer to other sources for installation. If you have experience in another language, you can try looking for a similar project using that language.
 
 A. Downloading your data from Facebook
