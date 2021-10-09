@@ -12,94 +12,102 @@
     <link href="main.css" rel="stylesheet">
   </head>
 
-  <body class="container d-grid gap-2" style="padding: 10px 10px 30px 10px;">
+  <body>
 
-    <!-- 
-      Account Full Name
-      Registered Date
-    -->
-    <div class="row card text-center">
-      <h3><strong><%= client.name %></strong></h3>
-      <small>Account created on <%= client.registeredDate %></small>
+    <div id="loading">
+      Loading Data Please Wait . . .
     </div>
 
+    <div class="container d-grid gap-2" style="padding: 10px 10px 30px 10px;">
 
-    <div class="row gap-2">
-
-      <!--
-        Messages Encountered
-        Messages Received
-        Messages Sent
-        Words Sent
+      <!-- 
+        Account Full Name
+        Registered Date
       -->
-      <div class="col d-grid gap-2">
-        <div class="row card d-grid">
-          <div class="row-4"><p id="messagesEncountered"></p></div>
-          <div class="row-4"><p id="messagesReceived"></p></div>
-          <div class="row-4"><p id="messagesSent"></p></div>
-          <div class="row-4"><p id="wordsSent"></p></div>
+      <div class="row card text-center">
+        <h3><strong><%= client.name %></strong></h3>
+        <small>Account created on <%= client.registeredDate %></small>
+      </div>
+
+
+      <div class="row gap-2">
+
+        <!--
+          Messages Encountered
+          Messages Received
+          Messages Sent
+          Words Sent
+        -->
+        <div class="col d-grid gap-2">
+          <div class="row card d-grid">
+            <div class="row-4"><p id="messagesEncountered"></p></div>
+            <div class="row-4"><p id="messagesReceived"></p></div>
+            <div class="row-4"><p id="messagesSent"></p></div>
+            <div class="row-4"><p id="wordsSent"></p></div>
+          </div>
+          <div class="row card d-grid">
+            <h4><strong>About This Project</strong></h4>
+            <p>
+              Facebook Data Analyzer is an <a href="https://github.com/ming-suhi/facebook-data-analyzer" target="_blank">open source project</a> 
+              started with 💙 by <a href="https://github.com/ming-suhi" target="_blank">ming-suhi</a>.
+            </p>
+          </div>
         </div>
-        <div class="row card d-grid">
-          <h4><strong>About This Project</strong></h4>
-          <p>
-            Facebook Data Analyzer is an <a href="https://github.com/ming-suhi/facebook-data-analyzer" target="_blank">open source project</a> 
-            started with 💙 by <a href="https://github.com/ming-suhi" target="_blank">ming-suhi</a>.
-          </p>
+
+        <!-- Years Ranked -->
+        <div class="col-8 card">
+          <canvas id="yearsRankedChart"></canvas>
         </div>
+        
       </div>
 
-      <!-- Years Ranked -->
-      <div class="col-8 card">
-        <canvas id="yearsRankedChart"></canvas>
-      </div>
-      
-    </div>
 
-
-    <!-- Favorite Hours -->
-    <div class="row card">
-      <canvas id="favoriteHoursChart"></canvas>
-    </div>
-
-
-    <div class="row gap-2">
-
-      <!-- Favorite Channels -->
-      <div class="col p-5 card">
-        <table class="table table-borderless" id="rankedByMessages">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Channel</th>
-              <th scope="col">Your Messages Count</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <!-- Favorite Hours -->
+      <div class="row card">
+        <canvas id="favoriteHoursChart"></canvas>
       </div>
 
-      <!-- Word Occurences -->
-      <div class="col p-5 card">
-        <table class="table table-borderless" id="rankedByOccurences">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Word</th>
-              <th scope="col">Occurences</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
 
-    </div>
+      <div class="row gap-2">
+
+        <!-- Favorite Channels -->
+        <div class="col p-5 card">
+          <table class="table table-borderless" id="rankedByMessages">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Channel</th>
+                <th scope="col">Your Messages Count</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Word Occurences -->
+        <div class="col p-5 card">
+          <table class="table table-borderless" id="rankedByOccurences">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Word</th>
+                <th scope="col">Occurences</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+  </div>
 
   </body>
 
   <!-- Scripts -->
   <script src="scripts/utilities.js"></script>
+  <script src="scripts/classes.js"></script>
   <script src="scripts/index.js"></script>
 
 </html>

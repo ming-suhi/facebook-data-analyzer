@@ -1,33 +1,44 @@
 Chart.defaults.color = "#fff";
 
+const progress = new Progress(8, () => {
+  const ctx = document.getElementById('loading');
+  ctx.remove();
+});
+
 fetchRoute('/user/messages/encountered', data => {
   const ctx = document.getElementById('messagesEncountered');
   ctx.innerHTML = `<strong class="highlights">${data}</strong> messages encountered`;
+  progress.add();
 });
 
 fetchRoute('/user/messages/received', data => {
   const ctx = document.getElementById('messagesReceived');
   ctx.innerHTML = `<strong class="highlights">${data}</strong> messages received`;
+  progress.add();
 });
 
 fetchRoute('/user/messages/sent', data => {
   const ctx = document.getElementById('messagesSent');
   ctx.innerHTML = `<strong class="highlights">${data}</strong> messages sent`;
+  progress.add();
 });
 
 fetchRoute('/user/words/sent', data => {
   const ctx = document.getElementById('wordsSent');
   ctx.innerHTML = `<strong class="highlights">${data}</strong> words sent`;
+  progress.add();
 });
 
 fetchRoute('/user/messages/sent-per-year/chart-data', data => {
   const ctx = document.getElementById('yearsRankedChart');
   const chart = new Chart(ctx, data);
+  progress.add();
 });
 
 fetchRoute('/user/messages/sent-per-hour/chart-data', data => {
   const ctx = document.getElementById('favoriteHoursChart');
   const chart = new Chart(ctx, data);
+  progress.add();
 });
 
 fetchRoute('/user/channels/rankedByMessages', data => {
@@ -42,6 +53,7 @@ fetchRoute('/user/channels/rankedByMessages', data => {
     `
     ctx.getElementsByTagName("tbody")[0].appendChild(row);
   }
+  progress.add();
 });
 
 fetchRoute('/user/words/occurences', data => {
@@ -56,4 +68,5 @@ fetchRoute('/user/words/occurences', data => {
     `
     ctx.getElementsByTagName("tbody")[0].appendChild(row);
   }
+  progress.add();
 });
