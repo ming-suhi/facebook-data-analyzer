@@ -1,15 +1,20 @@
 class Progress {
-  constructor(total, callback) {
+  constructor(total, name) {
     this.total = total;
     this.loaded = 0;
-    this.callback = callback;
+    this.element = document.getElementById(name);
+  }
+
+  changeState(content) {
+    this.element.innerText = content;
   }
 
   add() {
     this.loaded = this.loaded + 1;
     console.log(this.loaded);
     if(this.loaded == this.total) {
-      this.callback();
+      this.element.remove();
+      document.body.style.overflow = "scroll";
     }
   }
 }

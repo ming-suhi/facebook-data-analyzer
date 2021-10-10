@@ -8,6 +8,7 @@
 body {
   background-color: var(--main-bg-color);
   color: var(--main-color);
+  overflow: hidden;
 }
 
 a {
