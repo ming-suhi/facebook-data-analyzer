@@ -6,69 +6,85 @@
   src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC7g4.ttf) format('truetype');
 }
 /* Colors */
-/* Sizes */
-[section="height"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-[section="width"] {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 1245px;
-}
-[flex="centered"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-[flex="space-between"] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-ul[type="inline"] li {
-  display: inline-block;
-  padding: 0 20px;
-}
 * {
   margin: 0px;
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
 }
 body {
+  display: grid;
+  gap: 10px;
+  width: 100vw;
+  height: auto;
+  grid-template-areas: "header header header" ". main ." "footer footer footer";
   background-color: #282A2E;
   color: #FFF;
 }
 header {
+  grid-area: header;
   height: 50px;
   background-color: #202225;
+  padding: 0 4vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.modal {
-  z-index: 1;
-  position: fixed;
-  width: 100%;
-  height: 100%;
+nav a {
+  margin: 0 20px;
 }
-li,
-a {
-  font-size: 14px;
-  font-weight: 500;
-  color: #FFF;
-  text-decoration: none;
+main {
+  display: grid;
+  gap: 10px;
+  grid-area: main;
+  justify-self: center;
+  width: 80vw;
+  height: auto;
+  grid-template-areas: "a a" "b b" "c c" "d e";
+}
+footer {
+  grid-area: footer;
+  height: 50px;
+  background-color: #202225;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main > * {
+  background-color: #202225;
+  border-radius: 8px;
+}
+main :nth-child(1) {
+  grid-area: a;
+}
+main :nth-child(2) {
+  grid-area: b;
+}
+main :nth-child(3) {
+  grid-area: c;
+}
+main :nth-child(4) {
+  grid-area: d;
+}
+main :nth-child(5) {
+  grid-area: e;
+}
+h1 {
+  font-size: 18px;
 }
 #loading {
   z-index: 1;
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #282A2E;
   display: none;
-}
-section[id] {
-  background-color: #202225;
-  border-radius: 8px;
 }

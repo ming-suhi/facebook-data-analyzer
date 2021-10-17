@@ -1,47 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import "settings.less";
 
-/* Colors */
-#colors() {
-  background: #282A2E;
-  container: #202225;
-  text: #FFF;
-  text-highlight: #3377bf;
-}
-
-/* Sizes */
-#sizes() {
-  content-body: 1245px;
-}
-
-[section="height"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-[section="width"] {
+@flex-space: {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  width: #sizes[content-body];
-}
-
-[flex="centered"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-[flex="space-between"] {
-  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-ul[type="inline"] li{
-  display: inline-block;
-  padding: 0 20px;
+@flex-center: {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@grid: {
+  display: grid;
+  gap: 10px;
+}
+
+@modal: {
+  z-index: 1;
+  position: fixed; 
+  width: 100%;
+  height: 100%;
 }
 
 * {
@@ -49,39 +31,76 @@ ul[type="inline"] li{
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
-}
-
-body {
-  background-color: #colors[background];
-  color: #colors[text];
-}
-
-header {
-  height: 50px;
-  background-color: #colors[container];
-}
-
-.modal {
-  z-index: 1;
-  position: fixed; 
-  width: 100%;
-  height: 100%;
-}
-
-li, a{
+  color: @color[text];
   font-size: 14px;
   font-weight: 500;
-  color: #colors[text];
   text-decoration: none;
 }
 
-#loading {
-  .modal();
-  background-color: inherit;
-  display: none;
+body {
+  @grid();
+  width: 100vw;
+  height: auto;
+  grid-template-areas: 
+    "header header header"
+    ". main ."
+    "footer footer footer"
+  ;
+  background-color: @color[background];
+  color: @color[text];
 }
 
-section[id] {
-  background-color: #colors[container];
-  border-radius: 8px;
+header {
+  grid-area: header;
+  height: @height[header];
+  background-color: @color[container];
+  padding: @padding[header];
+  @flex-space();
+}
+
+nav a {
+  margin: @margin[nav-link];
+}
+
+main {
+  @grid();
+  grid-area: main;
+  justify-self: center;
+  width: @width[main];
+  height: auto;
+  grid-template-areas: 
+    "a a"
+    "b b"
+    "c c"
+    "d e"
+  ;
+}
+
+footer {
+  grid-area: footer;
+  height: @height[footer];
+  background-color: @color[container];
+  @flex-center();
+}
+
+main > * {
+  background-color: @color[container];
+  border-radius: @radius[smooth];
+}
+
+main :nth-child(1) { grid-area: a }
+main :nth-child(2) { grid-area: b }
+main :nth-child(3) { grid-area: c }
+main :nth-child(4) { grid-area: d }
+main :nth-child(5) { grid-area: e }
+
+h1 {
+  font-size: 18px;
+}
+
+#loading {
+  @modal();
+  @flex-center();
+  background-color: @color[background];
+  display: none;
 }

@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html>
   
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Facebook Data Analyzer</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="styles/styles.css" rel="stylesheet"></link>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
+  <title>Facebook Data Analyzer</title>
+  <meta name="description" content="">
 
-    <div flex="centered" id="loading">
-      <p>Loading . . .</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="styles/styles.css" rel="stylesheet"></link>
+</head>
+
+
+<body>
+  
+  <!--
+    Loading modal;
+    covers loading components,
+    removed on finished loading
+  -->
+  <div centered id="loading">
+    <p>Loading . . .</p>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div id="site-name">
+      <h1>Facebook Data Analyzer</h1>
     </div>
-
-    <header section="height" flex="centered">
-      <nav section="width" flex="space-between">
-
-        <div id="site-name">
-
-          <p>Facebook Data Analyzer</p>
-        </div>
-
-        <ul type="inline">
-          <li><a href="#">Repository</a></li>
-          <li><a href="#">Developer</a></li>
-        </ul>
-
-      </nav>
-    </header>
     
-    <main section="height">
-      <section section="width" id="profile"></section>
+    <nav>
+      <a href="#">Repository</a>
+      <a href="#">Developer</a>
+    </nav>
+  </header>
+  
+  <!-- Main body -->
+  <main>
+    <section id="profile"></section>
+    <section id="yearly-chart"></section>
+    <section id="hourly-chart"></section>
+    <section id="channels-table"></section>
+    <section id="words-table"></section>
+  </main>
 
-      <section section="width" id="yearly-chart"></section>
-
-      <section section="width" id="hourly-chart"></section>
-
-      <section section="width">
-        <section id="channels-table"></section>
-        <section id="words-table"></section>
-      </section>
-    </main>
-
-    <footer section="height">
-      <p section="width">Made with love by ming-suhi</p>
-    </footer>
-
-  </body>
+  <!-- Footer -->
+  <footer>
+    <p>Made with love by ming-suhi</p>
+  </footer>
+</body>
 
 </html>
