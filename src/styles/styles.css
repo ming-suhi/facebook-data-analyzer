@@ -6,73 +6,98 @@
   src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC7g4.ttf) format('truetype');
 }
 /* Colors */
+[block] {
+  display: block;
+}
 * {
   margin: 0px;
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
   color: #FFF;
+  overflow-x: hidden;
   font-size: 14px;
-  font-weight: 500;
   text-decoration: none;
+}
+body {
+  grid-template-areas: "a a a" ". b ." "c c c";
+}
+body > header {
+  grid-area: a;
+}
+body > main {
+  justify-self: center;
+  grid-area: b;
+}
+body > footer {
+  grid-area: c;
+}
+main {
+  grid-template-areas: "a a" "b b" "c c" "d e";
+}
+main > :nth-child(1) {
+  grid-area: a;
+}
+main > :nth-child(2) {
+  grid-area: b;
+}
+main > :nth-child(3) {
+  grid-area: c;
+}
+main > :nth-child(4) {
+  grid-area: d;
+}
+main > :nth-child(5) {
+  grid-area: e;
+}
+main > :nth-child(1) {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
 }
 body {
   display: grid;
   gap: 10px;
   width: 100vw;
-  height: auto;
-  grid-template-areas: "header header header" ". main ." "footer footer footer";
   background-color: #282A2E;
-  color: #FFF;
 }
 header {
-  grid-area: header;
-  height: 50px;
-  background-color: #202225;
-  padding: 0 4vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  height: 50px;
+  background-color: #202225;
+  padding: 0 4vw;
 }
-nav a {
-  margin: 0 20px;
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #202225;
 }
 main {
   display: grid;
   gap: 10px;
-  grid-area: main;
-  justify-self: center;
   width: 80vw;
-  height: auto;
-  grid-template-areas: "a a" "b b" "c c" "d e";
 }
-footer {
-  grid-area: footer;
-  height: 50px;
-  background-color: #202225;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-main > * {
-  background-color: #202225;
+main > section {
   border-radius: 8px;
+  padding: 20px;
+  background-color: #202225;
 }
-main :nth-child(1) {
-  grid-area: a;
+main > :nth-child(1) {
+  display: grid;
+  gap: 10px;
+  height: 60px;
+  text-align: center;
 }
-main :nth-child(2) {
-  grid-area: b;
+nav > a {
+  margin: 0 20px;
 }
-main :nth-child(3) {
-  grid-area: c;
-}
-main :nth-child(4) {
-  grid-area: d;
-}
-main :nth-child(5) {
-  grid-area: e;
+strong {
+  color: #3377bf;
 }
 h1 {
   font-size: 18px;

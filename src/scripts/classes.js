@@ -18,3 +18,11 @@ class Progress {
     }
   }
 }
+
+class P {
+  constructor(innerHTML) {
+    const p = document.createElement('p');
+    p.innerHTML = innerHTML;
+    return p;
+  }
+}
