@@ -9,6 +9,11 @@
 [block] {
   display: block;
 }
+table {
+  border-spacing: 15px 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
 * {
   margin: 0px;
   padding: 0px;
