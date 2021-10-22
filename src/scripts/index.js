@@ -1,81 +1,115 @@
 Chart.defaults.color = "#fff";
 
+// Create loading modal manager
+const loadingModal = new LoadingModal("loading", 8);
+
+// For rendering elements on profile section
+function renderCount(data, label) {
+
+  // Create element
+  const p = document.createElement('p');
+
+  // Add content to element
+  p.innerHTML = `<strong block>${data}</strong> ${label}`;
+
+  // Append to profile
+  document.getElementById('profile').appendChild(p);
+}
+
+
+// Messages Encountered
 fetchRoute('/user/messages/encountered', data => {
-  const p = new P(`<strong block>${data}</strong> messages encountered`);
-  document.getElementById('profile').appendChild(p);
+  loadingModal.text("Loading Messages Encountered . . .");
+  renderCount(data, "messages encountered");
+  loadingModal.add();
 });
 
+
+// Messages Received
 fetchRoute('/user/messages/received', data => {
-  const p = new P(`<strong block>${data}</strong> messages received`);
-  document.getElementById('profile').appendChild(p);
+  loadingModal.text("Loading Messages Received . . .");
+  renderCount(data, "messages received");
+  loadingModal.add();
 });
 
+
+// Messages Sent
 fetchRoute('/user/messages/sent', data => {
-  const p = new P(`<strong block>${data}</strong> messages sent`);
-  document.getElementById('profile').appendChild(p);
+  loadingModal.text("Loading Messages Sent . . .");
+  renderCount(data, "messages sent");
+  loadingModal.add();
 });
 
+
+// Words Sent
 fetchRoute('/user/words/sent', data => {
-  const p = new P(`<strong block>${data}</strong> words sent`);
-  document.getElementById('profile').appendChild(p);
+  loadingModal.text("Loading Words Sent . . .");
+  renderCount(data, "words sent");
+  loadingModal.add();
 });
 
+
+// Yearly chart
 fetchRoute('/user/messages/sent-per-year/chart-data', data => {
+  loadingModal.text("Loading Yearly Chart . . .");
   const canvas = document.createElement('canvas');
   document.getElementById('yearly-chart').appendChild(canvas);
   new Chart(canvas, data);
+  loadingModal.add();
 });
 
+
+// Hourly chart
 fetchRoute('/user/messages/sent-per-hour/chart-data', data => {
+  loadingModal.text("Loading Hourly Chart . . .");
   const canvas = document.createElement('canvas');
   document.getElementById('hourly-chart').appendChild(canvas);
   new Chart(canvas, data);
+  loadingModal.add();
 });
 
+
+// Channels by messages
 fetchRoute('/user/channels/rankedByMessages', data => {
-  const table = document.createElement("table");
-  const thead = table.createTHead();
-  thead.innerHTML = `
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Channel</th>
-    <th scope="col">Your Messages Count</th>
-  </tr>
-  `
-  const tbody = table.createTBody();
-  for(let channelRank in data.slice(0, 10)) {
-    const channel = data[channelRank];
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <th><strong>${parseInt(channelRank) + 1}</strong></th>
-    <td>${channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name}</td>
-    <td>${channel.count}</td>
-    `
-    tbody.appendChild(row);
+
+  loadingModal.text("Loading Channels Ranked . . .");
+
+  // Create table
+  const table = new Table(["#", "Channel", "Your Messages Count"]);
+
+  // Add data
+  for(let [index, channel] of data.slice(0, 10).entries()) {
+    const rank = `${index + 1}`;
+    const name = channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name;
+    const count = channel.count;
+    table.addRow([rank, name, count]);
   }
-  document.getElementById('channels-table').appendChild(table);
+
+  // Append table
+  document.getElementById('channels-table').appendChild(table.element);
+
+  loadingModal.add();
 });
 
+
+// Words by occurences
 fetchRoute('/user/words/occurences', data => {
-  const table = document.createElement("table");
-  const thead = table.createTHead();
-  thead.innerHTML = `
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Words</th>
-    <th scope="col">Occurences</th>
-  </tr>
-  `
-  const tbody = table.createTBody();
-  for(let wordRank in data.slice(0, 10)) {
-    const word = data[wordRank];
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <th><strong>${parseInt(wordRank) + 1}</strong></th>
-    <td>${word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name}</td>
-    <td>${word.count}</td>
-    `
-    tbody.appendChild(row);
+
+  loadingModal.text("Loading Words Occurences . . .");
+
+  // Create table
+  const table = new Table(["#", "Words", "Occurences"]);
+
+  // Add data
+  for(let [index, word] of data.slice(0, 10).entries()) {
+    const rank = `${index + 1}`;
+    const name = word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name;
+    const count = word.count;
+    table.addRow([rank, name, count]);
   }
-  document.getElementById('words-table').appendChild(table);
+
+  // Append table
+  document.getElementById('words-table').appendChild(table.element);
+
+  loadingModal.add();
 });

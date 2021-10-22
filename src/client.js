@@ -97,10 +97,10 @@ class Client {
       for(let element of channel.getParticipant(this.name)?.messages?.wordOccurences || []) {
 
         // Get reference from occurences
-      const reference = occurences.find(occurence => occurence.name == element.name);
+        const reference = occurences.find(occurence => occurence.name == element.name);
 
-      // Create object if does not exits and increment if exist
-      (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
+        // Create object if does not exists, increment if exist
+        (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
       }
     }
 

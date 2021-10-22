@@ -101,6 +101,7 @@ main > :nth-child(1) {
 nav > a {
   margin: 0 20px;
 }
+th,
 strong {
   color: #3377bf;
 }
@@ -116,5 +117,4 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: #282A2E;
-  display: none;
 }
