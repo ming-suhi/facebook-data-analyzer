@@ -1,7 +1,7 @@
 # Facebook Data Analyzer
 Take a peek to what have been your Facebook Messenger life
 
-![Preview](https://raw.githubusercontent.com/ming-suhi/facebook-data-analyzer/c5768cd32c852073808cfd5321b1dc89be90a8dc/assets/preview.png)
+![Preview](https://raw.githubusercontent.com/ming-suhi/facebook-data-analyzer/83e68b549701b49cfedf32409faa1929bf47a361/assets/preview.png)
 
 > ❗ **Note and Precaution**: This project is not associated with Facebook or Facebook Messenger.
 
