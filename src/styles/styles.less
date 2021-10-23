@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import "definitions.less";
+@import "structures.less";
+@import "grids.less";
+
+body {
+  @grid();
+  width: 100vw;
+  background-color: @color[background];
+}
+
+header {
+  @flex-space();
+  height: @height[header];
+  background-color: @color[container];
+  padding: @padding[header];
+}
+
+footer {
+  @flex-center();
+  height: @height[footer];
+  background-color: @color[container];
+}
+
+main {
+  @grid();
+  width: @width[main];
+}
+
+main > section {
+  border-radius: @radius[smooth];
+  padding: @padding[main];
+  background-color: @color[container];
+}
+
+main > :nth-child(1) {
+  @grid();
+  height: @height[small];
+  text-align: center;
+}
+
+nav > a {
+  margin: @margin[nav-link];
+}
+
+th, strong {
+  color: @color[text-highlight];
+}
+
+h1 {
+  font-size: 18px;
+}
+
+#loading {
+  @modal();
+  @flex-center();
+  background-color: @color[background];
+}

@@ -1,9 +1,12 @@
 const express = require('express');
-const userRouter = require('./routes/user');
+const dotenv = require('dotenv');
 const messagesRouter = require('./routes/messages');
 const channelsRouter = require('./routes/channels');
 const wordsRouter = require('./routes/words');
 const Client = require('./client');
+
+// Set env variables
+dotenv.config();
 
 // Create client
 const client = new Client();
@@ -25,10 +28,10 @@ app.get('/', (req, res) => {
 });
 
 // Attach routes
-app.use('/', userRouter);
 app.use('/', messagesRouter);
 app.use('/', channelsRouter);
 app.use('/', wordsRouter);
 
 // Start server
-app.listen(8000, () => console.log("Server listening on port 8000"));
+const port = parseInt(process.env.PORT) || 8000;
+app.listen(port, () => console.log(`Server listening on port ${port}`));

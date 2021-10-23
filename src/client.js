@@ -16,7 +16,6 @@ class Client {
     var profile = require(resolve(process.env.CATALOG_DIRECTORY, 'profile_information/profile_information.json'));
     var profile = profile[Object.keys(profile)[0]];
     this.name = profile.name.full_name;
-    this.registeredDate = new Date(profile.registration_timestamp).toDateString();
 
     // Create inbox instance
     this.inbox = new Inbox(resolve(process.env.CATALOG_DIRECTORY, 'messages/inbox'));
@@ -97,10 +96,10 @@ class Client {
       for(let element of channel.getParticipant(this.name)?.messages?.wordOccurences || []) {
 
         // Get reference from occurences
-      const reference = occurences.find(occurence => occurence.name == element.name);
+        const reference = occurences.find(occurence => occurence.name == element.name);
 
-      // Create object if does not exits and increment if exist
-      (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
+        // Create object if does not exists, increment if exist
+        (!reference) ? occurences.push({name: element.name, count: 1}) : reference.count = reference.count + 1;
       }
     }
 

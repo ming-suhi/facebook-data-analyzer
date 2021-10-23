@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC7g4.ttf) format('truetype');
+}
+/* Colors */
+[block] {
+  display: block;
+}
+table {
+  border-spacing: 15px 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #FFF;
+  overflow-x: hidden;
+  font-size: 14px;
+  text-decoration: none;
+}
+body {
+  grid-template-areas: "a a a" ". b ." "c c c";
+}
+body > header {
+  grid-area: a;
+}
+body > main {
+  justify-self: center;
+  grid-area: b;
+}
+body > footer {
+  grid-area: c;
+}
+main {
+  grid-template-areas: "a a" "b b" "c c" "d e";
+}
+main > :nth-child(1) {
+  grid-area: a;
+}
+main > :nth-child(2) {
+  grid-area: b;
+}
+main > :nth-child(3) {
+  grid-area: c;
+}
+main > :nth-child(4) {
+  grid-area: d;
+}
+main > :nth-child(5) {
+  grid-area: e;
+}
+main > :nth-child(1) {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+body {
+  display: grid;
+  gap: 10px;
+  width: 100vw;
+  background-color: #282A2E;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #202225;
+  padding: 0 4vw;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #202225;
+}
+main {
+  display: grid;
+  gap: 10px;
+  width: 80vw;
+}
+main > section {
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #202225;
+}
+main > :nth-child(1) {
+  display: grid;
+  gap: 10px;
+  height: 60px;
+  text-align: center;
+}
+nav > a {
+  margin: 0 20px;
+}
+th,
+strong {
+  color: #3377bf;
+}
+h1 {
+  font-size: 18px;
+}
+#loading {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #282A2E;
+}

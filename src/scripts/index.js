@@ -1,77 +1,116 @@
 Chart.defaults.color = "#fff";
 
-const progress = new Progress(8, 'loading');
+// Create loading modal manager
+const loadingModal = new LoadingModal("loading", 8);
 
+
+// For rendering elements on profile section
+function renderCount(data, label) {
+
+  // Create element
+  const p = document.createElement('p');
+
+  // Add content to element
+  p.innerHTML = `<strong block>${data}</strong> ${label}`;
+
+  // Append to profile
+  document.getElementById('profile').appendChild(p);
+}
+
+
+// Messages Encountered
 fetchRoute('/user/messages/encountered', data => {
-  progress.changeState("Counting Messages Encountered . . .");
-  const ctx = document.getElementById('messagesEncountered');
-  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages encountered`;
-  progress.add();
+  loadingModal.text("Loading Messages Encountered . . .");
+  renderCount(data, "messages encountered");
+  loadingModal.add();
 });
 
+
+// Messages Received
 fetchRoute('/user/messages/received', data => {
-  progress.changeState("Counting Messages Received. . .");
-  const ctx = document.getElementById('messagesReceived');
-  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages received`;
-  progress.add();
+  loadingModal.text("Loading Messages Received . . .");
+  renderCount(data, "messages received");
+  loadingModal.add();
 });
 
+
+// Messages Sent
 fetchRoute('/user/messages/sent', data => {
-  progress.changeState("Counting Messages Sent . . .");
-  const ctx = document.getElementById('messagesSent');
-  ctx.innerHTML = `<strong class="highlights">${data}</strong> messages sent`;
-  progress.add();
+  loadingModal.text("Loading Messages Sent . . .");
+  renderCount(data, "messages sent");
+  loadingModal.add();
 });
 
+
+// Words Sent
 fetchRoute('/user/words/sent', data => {
-  progress.changeState("Counting Words Sent . . .");
-  const ctx = document.getElementById('wordsSent');
-  ctx.innerHTML = `<strong class="highlights">${data}</strong> words sent`;
-  progress.add();
+  loadingModal.text("Loading Words Sent . . .");
+  renderCount(data, "words sent");
+  loadingModal.add();
 });
 
+
+// Yearly chart
 fetchRoute('/user/messages/sent-per-year/chart-data', data => {
-  progress.changeState("Creating Messages Sent Per Year Chart . . .");
-  const ctx = document.getElementById('yearsRankedChart');
-  const chart = new Chart(ctx, data);
-  progress.add();
+  loadingModal.text("Loading Yearly Chart . . .");
+  const canvas = document.createElement('canvas');
+  document.getElementById('yearly-chart').appendChild(canvas);
+  new Chart(canvas, data);
+  loadingModal.add();
 });
 
+
+// Hourly chart
 fetchRoute('/user/messages/sent-per-hour/chart-data', data => {
-  progress.changeState("Creating Messages Sent Per Hour Chart . . .");
-  const ctx = document.getElementById('favoriteHoursChart');
-  const chart = new Chart(ctx, data);
-  progress.add();
+  loadingModal.text("Loading Hourly Chart . . .");
+  const canvas = document.createElement('canvas');
+  document.getElementById('hourly-chart').appendChild(canvas);
+  new Chart(canvas, data);
+  loadingModal.add();
 });
 
+
+// Channels by messages
 fetchRoute('/user/channels/rankedByMessages', data => {
-  progress.changeState("Putting Channels to Table . . .");
-  const ctx = document.getElementById('rankedByMessages');
-  for(let channelRank in data.slice(0, 10)) {
-    const channel = data[channelRank];
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <th scope="row" ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${parseInt(channelRank) + 1}</th>
-    <td ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name}</td>
-    <td ${channelRank < 3 ? `class="highlights shade-${parseInt(channelRank) + 1}"` : ""}>${channel.count}</td>
-    `
-    ctx.getElementsByTagName("tbody")[0].appendChild(row);
+
+  loadingModal.text("Loading Channels Ranked . . .");
+
+  // Create table
+  const table = new Table(["#", "Channel", "Your Messages Count"]);
+
+  // Add data
+  for(let [index, channel] of data.slice(0, 10).entries()) {
+    const rank = `${index + 1}`;
+    const name = channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name;
+    const count = channel.count;
+    table.addRow([rank, name, count]);
   }
-  progress.add();
+
+  // Append table
+  document.getElementById('channels-table').appendChild(table.element);
+
+  loadingModal.add();
 });
 
+
+// Words by occurences
 fetchRoute('/user/words/occurences', data => {
-  progress.changeState("Analyzing Word Occurences . . .");
-  const ctx = document.getElementById('rankedByOccurences');
-  for(let wordRank in data.slice(0, 10)) {
-    const word = data[wordRank];
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <th scope="row" ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${parseInt(wordRank) + 1}</th>
-    <td ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${word.name}</td>
-    <td ${wordRank < 3 ? `class="highlights shade-${parseInt(wordRank) + 1}"` : ""}>${word.count}</td>
-    `
-    ctx.getElementsByTagName("tbody")[0].appendChild(row);
+
+  loadingModal.text("Loading Words Occurences . . .");
+
+  // Create table
+  const table = new Table(["#", "Words", "Occurences"]);
+
+  // Add data
+  for(let [index, word] of data.slice(0, 10).entries()) {
+    const rank = `${index + 1}`;
+    const name = word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name;
+    const count = word.count;
+    table.addRow([rank, name, count]);
   }
-  progress.add();
+
+  // Append table
+  document.getElementById('words-table').appendChild(table.element);
+
+  loadingModal.add();
 });
