@@ -16,7 +16,6 @@ class Client {
     var profile = require(resolve(process.env.CATALOG_DIRECTORY, 'profile_information/profile_information.json'));
     var profile = profile[Object.keys(profile)[0]];
     this.name = profile.name.full_name;
-    this.registeredDate = new Date(profile.registration_timestamp).toDateString();
 
     // Create inbox instance
     this.inbox = new Inbox(resolve(process.env.CATALOG_DIRECTORY, 'messages/inbox'));

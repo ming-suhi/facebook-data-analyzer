@@ -1,6 +1,5 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const userRouter = require('./routes/user');
 const messagesRouter = require('./routes/messages');
 const channelsRouter = require('./routes/channels');
 const wordsRouter = require('./routes/words');
@@ -29,7 +28,6 @@ app.get('/', (req, res) => {
 });
 
 // Attach routes
-app.use('/', userRouter);
 app.use('/', messagesRouter);
 app.use('/', channelsRouter);
 app.use('/', wordsRouter);

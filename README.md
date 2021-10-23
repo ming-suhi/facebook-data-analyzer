@@ -7,8 +7,6 @@ Take a peek to what have been your Facebook Messenger life
 
 # Features
 Listed below are the current project features and may change in the future. Make sure to ⭐ star this repo to be able to get back to it later and or press that `watch` button to be updated of new changes.
-- Account full name
-- Account registered date
 - Messages encountered
 - Messages sent
 - Messages received
@@ -30,7 +28,7 @@ A. Downloading your data from Facebook
 3. View `Download Your Information`
 4. Select `All time` for `Date Range`
 5. Select `JSON` for `Format`
-6. Make sure `Messages` is checked for `Your Activity Across Facebook`
+6. Make sure `Messages` and `Profile Information` is checked for `Your Activity Across Facebook`
 7. Press `Create File`
 8. Wait for email from Facebook containing download link
 9. Download the zip file through the provided link
