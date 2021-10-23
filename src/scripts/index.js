@@ -3,6 +3,7 @@ Chart.defaults.color = "#fff";
 // Create loading modal manager
 const loadingModal = new LoadingModal("loading", 8);
 
+
 // For rendering elements on profile section
 function renderCount(data, label) {
 
