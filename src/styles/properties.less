@@ -1,0 +1,89 @@
+[flex] {
+  display: flex;
+  align-items: center;
+}
+
+[flex~="left"] {
+  flex-direction: row;
+}
+
+[flex~="right"] {
+  flex-direction: row-reverse;
+}
+
+[flex~="top"] {
+  flex-direction: column;
+}
+
+[flex~="bottom"] {
+  flex-direction: column-reverse;
+}
+
+[flex~="space-between"] {
+  justify-content: space-between;
+}
+
+[flex~="center"] {
+  justify-content: center;
+}
+
+[flex~="space-evenly"] {
+  justify-content: space-evenly;
+}
+
+[flex~="wrap"] {
+  flex-wrap: wrap;
+}
+
+[grid] {
+  display: grid;
+}
+
+[grid~="center"] {
+  justify-items: center;
+  align-items: center;
+}
+
+[block] {
+  display: block;
+}
+
+[container~="smooth"] {
+  border-radius: 8px;
+}
+
+[text~="center"] {
+  text-align: center;
+}
+
+[theme-color="light"] {
+  background-color: @light-theme[background];
+
+  * {
+    color: @light-theme[text];
+  }
+
+  [container] {
+    background-color: @light-theme[container];
+  } 
+
+  th, strong {
+    color: @light-theme[text-highlight];
+  }
+}
+
+[theme-color="dark"] {
+  background-color: @dark-theme[background];
+
+  * {
+    color: @dark-theme[text];
+  }
+
+  [container] {
+    background-color: @dark-theme[container];
+  } 
+
+  th, strong {
+    color: @dark-theme[text-highlight];
+  }
+}

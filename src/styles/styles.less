@@ -1,58 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import "definitions.less";
-@import "structures.less";
-@import "grids.less";
+@import "tags.less";
+@import "properties.less";
 
 body {
-  @grid();
-  width: 100vw;
-  background-color: @color[background];
-}
+  grid-template-areas: 
+    "a a a"
+    ". b ."
+    "c c c"
+  ;
 
-header {
-  @flex-space();
-  height: @height[header];
-  background-color: @color[container];
-  padding: @padding[header];
-}
+  gap: 10px;
 
-footer {
-  @flex-center();
-  height: @height[footer];
-  background-color: @color[container];
+  > header { 
+    grid-area: a;
+  };
+
+  > main { 
+    justify-self: center;
+    grid-area: b; 
+    width: 80vw;
+  };
+
+  > footer { 
+    grid-area: c; 
+  };
 }
 
 main {
-  @grid();
-  width: @width[main];
+  grid-template-areas: 
+    "a a"
+    "b b"
+    "c c"
+    "d e"
+  ;
+
+  gap: 10px;
+  
+  > section {
+    padding: 40px;
+  }
+
+  > :nth-child(1) { 
+    grid-area: a;
+  };
+
+  > :nth-child(2) { 
+    grid-area: b; 
+  };
+
+  > :nth-child(3) { 
+    grid-area: c;
+  };
+
+  > :nth-child(4) { 
+    grid-area: d; 
+  };
+
+  > :nth-child(5) { 
+    grid-area: e;
+  };
 }
 
-main > section {
-  border-radius: @radius[smooth];
-  padding: @padding[main];
-  background-color: @color[container];
-}
-
-main > :nth-child(1) {
-  @grid();
-  height: @height[small];
-  text-align: center;
-}
-
-nav > a {
-  margin: @margin[nav-link];
-}
-
-th, strong {
-  color: @color[text-highlight];
-}
-
-h1 {
-  font-size: 18px;
+table {
+  border-spacing: 15px 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #loading {
-  @modal();
-  @flex-center();
-  background-color: @color[background];
+  z-index: 1;
+  position: fixed; 
+  width: 100%;
+  height: 100%;
 }

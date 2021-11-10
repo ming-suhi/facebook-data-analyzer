@@ -14,19 +14,14 @@
 </head>
 
 
-<body>
+<body theme-color="dark" grid>
   
-  <!--
-    Loading modal;
-    covers loading components,
-    removed on finished loading
-  -->
-  <div centered id="loading">
+
+  <div flex="left center" container id="loading" >
     <p>Loading . . .</p>
   </div>
 
-  <!-- Header -->
-  <header>
+  <header flex="left space-between" container>
     <div id="site-name">
       <h1>Facebook Data Analyzer</h1>
     </div>
@@ -37,21 +32,18 @@
     </nav>
   </header>
   
-  <!-- Main body -->
-  <main>
-    <section id="profile"></section>
-    <section id="yearly-chart"></section>
-    <section id="hourly-chart"></section>
-    <section id="channels-table"></section>
-    <section id="words-table"></section>
+  <main grid>
+    <section id="profile" flex="left space-evenly" text="center" container="smooth"></section>
+    <section id="yearly-chart" container="smooth"></section>
+    <section id="hourly-chart" container="smooth"></section>
+    <section id="channels-table" container="smooth"></section>
+    <section id="words-table" container="smooth"></section>
   </main>
 
-  <!-- Footer -->
-  <footer>
+  <footer flex="left center" container>
     <p>Made with 💙 by ming-suhi</p>
   </footer>
   
-  <!-- Scripts -->
   <script src="scripts/utilities.js" async defer></script>
   <script src="scripts/classes.js" async defer></script>
   <script src="scripts/index.js" async defer></script>
