@@ -4,11 +4,16 @@
 @import "properties.less";
 
 body {
-  grid-template-areas: 
-    "a a a"
-    ". b ."
-    "c c c"
-  ;
+  @media @desktop, @min-desktop {
+    grid-template-areas: 
+      "a a a"
+      ". b ."
+      "c c c"
+    ;
+  }
+  @media @tablet, @mobile {
+    grid-template-areas: "a" "b" "c";
+  };
 
   gap: 10px;
 
@@ -28,6 +33,18 @@ body {
 }
 
 main {
+  @media @desktop, @min-desktop {
+    grid-template-areas: 
+      "a a"
+      "b b"
+      "c c"
+      "d e"
+    ;
+  };
+  @media @tablet, @mobile {
+    grid-template-areas: "a" "b" "c" "d" "e";
+  };
+
   grid-template-areas: 
     "a a"
     "b b"

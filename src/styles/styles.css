@@ -76,13 +76,13 @@ header {
 @media only screen and (min-width: 720px) and (max-width: 959px) {
   header {
     height: 75px;
-    padding: 0;
+    padding: 0 20px;
   }
 }
 @media only screen and (max-width: 719px) {
   header {
     height: 75px;
-    padding: 0;
+    padding: 0 20px;
   }
 }
 footer {
@@ -152,14 +152,14 @@ h1 {
 @media only screen and (min-width: 720px) and (max-width: 959px) {
   h1 {
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 15px;
     margin: 0 0 0 0;
   }
 }
 @media only screen and (max-width: 719px) {
   h1 {
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 15px;
     margin: 0 0 0 0;
   }
 }
@@ -325,8 +325,17 @@ table {
   color: #3377bf;
 }
 body {
-  grid-template-areas: "a a a" ". b ." "c c c";
   gap: 10px;
+}
+@media only screen and (min-width: 1200px), only screen and (min-width: 960px) and (max-width: 1199px) {
+  body {
+    grid-template-areas: "a a a" ". b ." "c c c";
+  }
+}
+@media only screen and (min-width: 720px) and (max-width: 959px), only screen and (max-width: 719px) {
+  body {
+    grid-template-areas: "a" "b" "c";
+  }
 }
 body > header {
   grid-area: a;
@@ -342,6 +351,16 @@ body > footer {
 main {
   grid-template-areas: "a a" "b b" "c c" "d e";
   gap: 10px;
+}
+@media only screen and (min-width: 1200px), only screen and (min-width: 960px) and (max-width: 1199px) {
+  main {
+    grid-template-areas: "a a" "b b" "c c" "d e";
+  }
+}
+@media only screen and (min-width: 720px) and (max-width: 959px), only screen and (max-width: 719px) {
+  main {
+    grid-template-areas: "a" "b" "c" "d" "e";
+  }
 }
 main > section {
   padding: 40px;

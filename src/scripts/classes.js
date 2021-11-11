@@ -44,15 +44,13 @@ class Table {
 
   
   // Add row to table
-  addRow(datas) {
+  addRow(elements) {
 
     // Create row
     const row = document.createElement('tr');
 
     // Add datas to row
-    for(let [index, value] of datas.entries()) {
-      const element = index == 0 ? document.createElement('th') : document.createElement('td');
-      element.innerHTML = value;
+    for(let element of elements) {
       row.appendChild(element);
     }
 

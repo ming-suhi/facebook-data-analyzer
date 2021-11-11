@@ -80,9 +80,17 @@ fetchRoute('/user/channels/rankedByMessages', data => {
 
   // Add data
   for(let [index, channel] of data.slice(0, 10).entries()) {
-    const rank = `${index + 1}`;
-    const name = channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name;
-    const count = channel.count;
+
+    const rank = document.createElement('th');
+    rank.innerHTML = `${index + 1}`;
+
+    const name = document.createElement('td');
+    name.innerHTML = channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name;
+
+    const count = document.createElement('td');
+    count.innerHTML = channel.count;
+    count.setAttribute("text", "center");
+
     table.addRow([rank, name, count]);
   }
 
@@ -103,9 +111,17 @@ fetchRoute('/user/words/occurences', data => {
 
   // Add data
   for(let [index, word] of data.slice(0, 10).entries()) {
-    const rank = `${index + 1}`;
-    const name = word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name;
-    const count = word.count;
+
+    const rank = document.createElement('th');
+    rank.innerHTML = `${index + 1}`;
+
+    const name = document.createElement('td');
+    name.innerHTML = word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name;
+
+    const count = document.createElement('td');
+    count.innerHTML = word.count;
+    count.setAttribute("text", "center");
+
     table.addRow([rank, name, count]);
   }
 
