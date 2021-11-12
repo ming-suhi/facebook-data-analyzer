@@ -1,11 +1,10 @@
 Chart.defaults.color = "#fff";
 
-// Create loading modal manager
-const loadingModal = new LoadingModal("loading", 8);
 
+async function renderCount(route, label) {
 
-// For rendering elements on profile section
-function renderCount(data, label) {
+  // Fetch route
+  const data = await fetchRoute(route);
 
   // Create element
   const p = document.createElement('p');
@@ -18,115 +17,83 @@ function renderCount(data, label) {
 }
 
 
-// Messages Encountered
-fetchRoute('/user/messages/encountered', data => {
-  loadingModal.text("Loading Messages Encountered . . .");
-  renderCount(data, "messages encountered");
+async function renderChart(route, parentId) {
+
+  // Fetch route
+  const data = await fetchRoute(route);
+
+  // Create element
+  const canvas = document.createElement('canvas');
+
+  // Create chart
+  new Chart(canvas, data);
+
+  // Append to parent
+  document.getElementById(parentId).appendChild(canvas);
+}
+
+
+async function renderTable(route, parentId, tableHead) {
+
+  // Fetch route
+  const data = await fetchRoute(route);
+  
+  // Create table
+  const table = new Table(tableHead);
+
+  // Add data
+  for(let [index, element] of data.slice(0, 10).entries()) {
+
+    const rank = document.createElement('th');
+    rank.innerHTML = `${index + 1}`;
+
+    const name = document.createElement('td');
+    name.innerHTML = element.name.length > 25 ? element.name.substring(0, 25) + "..." : element.name;
+
+    const count = document.createElement('td');
+    count.innerHTML = element.count;
+    count.setAttribute("text", "center");
+
+    table.addRow([rank, name, count]);
+  }
+
+  // Append table
+  document.getElementById(parentId).appendChild(table.element);
+}
+
+
+(async function render() {
+  const loadingModal = new LoadingModal("loading", 8);
+
+  loadingModal.text("Counting Messages Encountered . . .");
+  await renderCount('/user/messages/encountered', 'messages encountered');
   loadingModal.add();
-});
 
-
-// Messages Received
-fetchRoute('/user/messages/received', data => {
-  loadingModal.text("Loading Messages Received . . .");
-  renderCount(data, "messages received");
+  loadingModal.text("Counting Messages Received . . .");
+  await renderCount('/user/messages/received', 'messages received');
   loadingModal.add();
-});
 
-
-// Messages Sent
-fetchRoute('/user/messages/sent', data => {
-  loadingModal.text("Loading Messages Sent . . .");
-  renderCount(data, "messages sent");
+  loadingModal.text("Counting Messages Sent . . .");
+  await renderCount('/user/messages/sent', 'messages sent');
   loadingModal.add();
-});
 
-
-// Words Sent
-fetchRoute('/user/words/sent', data => {
-  loadingModal.text("Loading Words Sent . . .");
-  renderCount(data, "words sent");
+  loadingModal.text("Counting Words Sent . . .");
+  await renderCount('/user/words/sent', 'words sent');
   loadingModal.add();
-});
 
-
-// Yearly chart
-fetchRoute('/user/messages/sent-per-year/chart-data', data => {
   loadingModal.text("Loading Yearly Chart . . .");
-  const canvas = document.createElement('canvas');
-  document.getElementById('yearly-chart').appendChild(canvas);
-  new Chart(canvas, data);
+  await renderChart('/user/messages/sent-per-year/chart-data', 'yearly-chart');
   loadingModal.add();
-});
 
-
-// Hourly chart
-fetchRoute('/user/messages/sent-per-hour/chart-data', data => {
   loadingModal.text("Loading Hourly Chart . . .");
-  const canvas = document.createElement('canvas');
-  document.getElementById('hourly-chart').appendChild(canvas);
-  new Chart(canvas, data);
+  await renderChart('/user/messages/sent-per-hour/chart-data', 'hourly-chart');
   loadingModal.add();
-});
-
-
-// Channels by messages
-fetchRoute('/user/channels/rankedByMessages', data => {
 
   loadingModal.text("Loading Channels Ranked . . .");
-
-  // Create table
-  const table = new Table(["#", "Channel", "Your Messages Count"]);
-
-  // Add data
-  for(let [index, channel] of data.slice(0, 10).entries()) {
-
-    const rank = document.createElement('th');
-    rank.innerHTML = `${index + 1}`;
-
-    const name = document.createElement('td');
-    name.innerHTML = channel.name.length > 25 ? channel.name.substring(0, 25) + "..." : channel.name;
-
-    const count = document.createElement('td');
-    count.innerHTML = channel.count;
-    count.setAttribute("text", "center");
-
-    table.addRow([rank, name, count]);
-  }
-
-  // Append table
-  document.getElementById('channels-table').appendChild(table.element);
-
+  await renderTable('/user/channels/rankedByMessages', 'channels-table', ["#", "Channel", "Your Messages Count"]);
   loadingModal.add();
-});
-
-
-// Words by occurences
-fetchRoute('/user/words/occurences', data => {
 
   loadingModal.text("Loading Words Occurences . . .");
-
-  // Create table
-  const table = new Table(["#", "Words", "Occurences"]);
-
-  // Add data
-  for(let [index, word] of data.slice(0, 10).entries()) {
-
-    const rank = document.createElement('th');
-    rank.innerHTML = `${index + 1}`;
-
-    const name = document.createElement('td');
-    name.innerHTML = word.name.length > 25 ? word.name.substring(0, 25) + "..." : word.name;
-
-    const count = document.createElement('td');
-    count.innerHTML = word.count;
-    count.setAttribute("text", "center");
-
-    table.addRow([rank, name, count]);
-  }
-
-  // Append table
-  document.getElementById('words-table').appendChild(table.element);
-
+  await renderTable('/user/words/occurences', 'words-table', ["#", "Words", "Occurences"]);
   loadingModal.add();
-});
+})();

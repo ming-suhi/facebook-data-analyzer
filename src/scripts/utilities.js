@@ -1,5 +1,5 @@
-const fetchRoute = async(route, callback) => {
+async function fetchRoute(route) {
   const response = await fetch(route);
   const data = await response.json();
-  callback(data);
+  return data;
 }

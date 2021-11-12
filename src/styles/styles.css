@@ -391,3 +391,9 @@ table {
   width: 100%;
   height: 100%;
 }
+[state~="loading"] {
+  overflow-y: hidden;
+}
+[state~="loaded"] {
+  overflow-y: scroll;
+}

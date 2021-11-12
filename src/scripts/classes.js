@@ -14,6 +14,7 @@ class LoadingModal {
 
   // Remove loading modal
   remove() {
+    document.documentElement.setAttribute("state", "loaded");
     this.element.remove();
   }
 
