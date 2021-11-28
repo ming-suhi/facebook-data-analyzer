@@ -6,43 +6,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "concurrently": "^6.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "compile": "less-watch-compiler",
-    "dev": "concurrently \"npm:start\" \"npm:compile\"",
-    "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "concurrently": "^6.4.0",
-    "less": "^4.1.2",
-    "less-watch-compiler": "^1.16.3"
+    "postinstall": "(cd frontend && npm i) && (cd ../backend && npm i)",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\"",
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
   }
 }
