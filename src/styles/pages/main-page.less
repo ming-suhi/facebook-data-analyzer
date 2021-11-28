@@ -1,0 +1,42 @@
+#main-page {
+  width: 100%;
+  min-height: 100%;
+  @media @desktop, @min-desktop {
+    grid-template-areas: 
+      "a a a"
+      ". b ."
+      "c c c"
+    ;
+  }
+  @media @tablet, @mobile {
+    grid-template-areas: "a" "b" "c";
+  };
+
+  gap: 10px;
+
+  > header { 
+    grid-area: a;
+    height: 75px;
+    padding: 0 20px;
+  };
+
+  > main { 
+    justify-self: center;
+    grid-area: b; 
+    width: 80vw;
+  };
+
+  > footer { 
+    grid-area: c; 
+    height: 75px;
+  };
+
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  nav > a {
+    margin: 0 20px;
+  }
+}

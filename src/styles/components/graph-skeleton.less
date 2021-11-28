@@ -1,0 +1,42 @@
+.graph-skeleton {
+  grid-template-areas: 
+  '. . . . . f . . . j'
+  '. . c d . f g . . j'
+  'a . c d e f g . . j'
+  'a b c d e f g h i j'
+  'a b c d e f g h i j';
+  grid-template-columns: 35px 35px 35px 35px 35px 35px 35px 35px 35px 35px;
+  grid-template-rows: 35px 35px 35px 35px 35px;
+  gap: 15px;
+
+  > :nth-child(1) {
+    grid-area: a;
+  }
+  > :nth-child(2) {
+    grid-area: b;
+  }
+  > :nth-child(3) {
+    grid-area: c;
+  }
+  > :nth-child(4) {
+    grid-area: d;
+  }
+  > :nth-child(5) {
+    grid-area: e;
+  }
+  > :nth-child(6) {
+    grid-area: f;
+  }
+  > :nth-child(7) {
+    grid-area: g;
+  }
+  > :nth-child(8) {
+    grid-area: h;
+  }
+  > :nth-child(9) {
+    grid-area: i;
+  }
+  > :nth-child(10) {
+    grid-area: j;
+  }
+}

@@ -1,6 +1,5 @@
 [flex] {
   display: flex;
-  align-items: center;
 }
 
 [flex~="left"] {
@@ -11,6 +10,16 @@
   flex-direction: row-reverse;
 }
 
+[flex~="left"], [flex~="right"] {
+  &[flex~="center-y"] {
+    align-items: center;
+  }
+
+  &[flex~="center-x"] {
+    justify-content: center;
+  }
+}
+
 [flex~="top"] {
   flex-direction: column;
 }
@@ -19,12 +28,18 @@
   flex-direction: column-reverse;
 }
 
-[flex~="space-between"] {
-  justify-content: space-between;
+[flex~="top"], [flex~="bottom"] {
+  &[flex~="center-y"] {
+    justify-content: center;
+  }
+
+  &[flex~="center-x"] {
+    align-items: center;
+  }
 }
 
-[flex~="center"] {
-  justify-content: center;
+[flex~="space-between"] {
+  justify-content: space-between;
 }
 
 [flex~="space-evenly"] {
@@ -48,42 +63,50 @@
   display: block;
 }
 
-[container~="smooth"] {
-  border-radius: 8px;
+[edge~="smooth"] {
+  border-radius: 5px;
+}
+
+[edge~="circle"] {
+  border-radius: 100%;
 }
 
 [text~="center"] {
   text-align: center;
 }
 
-[theme-color="light"] {
-  background-color: @light-theme[background];
+[text~="left"] {
+  text-align: left;
+}
 
+[text~="right"] {
+  text-align: right;
+}
+
+[theme-color="light"] {
   * {
     color: @light-theme[text];
   }
 
-  [container] {
+  &[container], [container] {
     background-color: @light-theme[container];
   } 
 
-  th, strong {
-    color: @light-theme[text-highlight];
+  &[background], [background] {
+    background-color: @light-theme[background];
   }
 }
 
 [theme-color="dark"] {
-  background-color: @dark-theme[background];
-
   * {
     color: @dark-theme[text];
   }
 
-  [container] {
+  &[container], [container] {
     background-color: @dark-theme[container];
   } 
 
-  th, strong {
-    color: @dark-theme[text-highlight];
+  &[background], [background] {
+    background-color: @dark-theme[background];
   }
 }
