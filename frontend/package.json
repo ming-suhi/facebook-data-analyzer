@@ -35,5 +35,6 @@
     "concurrently": "^6.4.0",
     "less": "^4.1.2",
     "less-watch-compiler": "^1.16.3"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

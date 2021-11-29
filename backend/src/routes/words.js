@@ -6,15 +6,17 @@ const router = express.Router();
 
 // Create client
 const client = new Client();
+const wordsSent = client.wordsSent;
+const wordsOccurences = client.wordsOccurences;
 
 // No of words sent
 router.get('/user/words/sent', (req, res) => {
-  res.send(client.wordsSent.toString());
+  res.send(wordsSent.toString());
 });
 
 // Words sent by occurences
 router.get('/user/words/occurences', (req, res) => {
-  res.send(client.wordOccurences);
+  res.send(wordsOccurences);
 });
 
 module.exports = router;
