@@ -1,15 +1,15 @@
 import React from "react";
-import CountSkeleton from "./CountSkeleton";
+import Count from "./Count";
 
 class CountSection extends React.Component {
 
   render() {
     return (
       <section flex="left space-evenly" text="center" container="" edge="smooth">
-        <CountSkeleton />
-        <CountSkeleton />
-        <CountSkeleton />
-        <CountSkeleton />
+        <Count route="/user/messages/encountered" label="messages encounter" />
+        <Count route="/user/messages/received" label="messages received" />
+        <Count route="/user/messages/sent" label="messages sent" />
+        <Count route="/user/words/sent" label="words sent" />
       </section>
     )
   }
