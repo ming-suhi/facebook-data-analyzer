@@ -7,7 +7,7 @@ const router = express.Router();
 // Create client
 const client = new Client();
 const wordsSent = client.wordsSent;
-const wordsOccurences = client.wordsOccurences;
+const wordsOccurences = client.wordsOccurences.slice(0, 10);
 
 // No of words sent
 router.get('/user/words/sent', (req, res) => {

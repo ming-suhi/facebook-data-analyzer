@@ -10,7 +10,7 @@ const channelsByYourSentMessages = client.channelsByYourSentMessages;
 
 // Years by no of messages sent
 router.get('/user/channels/rankedByMessages', (req, res) => {
-  res.send(channelsByYourSentMessages);
+  res.send(channelsByYourSentMessages.slice(0, 10));
 });
 
 module.exports = router;

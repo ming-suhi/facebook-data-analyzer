@@ -1,7 +1,7 @@
 import React from "react";
 import CountSection from "./CountSection";
 import GraphSkeleton from "./GraphSkeleton";
-import TableSkeleton from "./TableSkeleton";
+import Table from "./Table";
 
 class MainContainer extends React.Component {
 
@@ -16,10 +16,10 @@ class MainContainer extends React.Component {
           <GraphSkeleton />
         </section>
         <section flex="top center-x center-y" container="" edge="smooth" id="channels-table">
-          <TableSkeleton />
+          <Table route="/user/channels/rankedByMessages" labels={["#", "Channel", "Your Messages Count"]} />
         </section>
         <section flex="top center-x center-y" container="" edge="smooth" id="words-table">
-          <TableSkeleton />
+          <Table route="/user/words/occurences" labels={["#", "Words", "Occurences"]} />
         </section>
       </main>
     )

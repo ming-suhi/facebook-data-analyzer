@@ -84,7 +84,7 @@ class Client {
   
 
   // Get word occurences
-  get wordOccurences() {
+  get wordsOccurences() {
 
     // Declare variable for building
     var occurences = [];
