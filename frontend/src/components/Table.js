@@ -34,7 +34,6 @@ class TableSkeleton extends React.Component {
  * @returns Table head
  */
 const renderHead = (labels) => {
-
   /**
    * Callback function for mapped array
    * @param {string} data 
