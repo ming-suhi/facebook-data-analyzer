@@ -1,7 +1,7 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Count from "./components/Count";
-import GraphSkeleton from "./components/GraphSkeleton";
+import Chart from "./components/Chart";
 import Table from "./components/Table";
 
 function App() {
@@ -15,16 +15,16 @@ function App() {
           <Count route="/user/messages/sent" label="messages sent" />
           <Count route="/user/words/sent" label="words sent" />
         </section>
-        <section flex="top center-x center-y" container="" edge="smooth" id="yearly-chart">
-          <GraphSkeleton />
+        <section container="" edge="smooth">
+          <Chart route="/user/messages/sent-per-year/chart-data" />
         </section>
-        <section flex="top center-x center-y" container="" edge="smooth" id="hourly-chart">
-          <GraphSkeleton />
+        <section container="" edge="smooth">
+          <Chart route="/user/messages/sent-per-hour/chart-data" />
         </section>
-        <section flex="top center-x center-y" container="" edge="smooth" id="channels-table">
+        <section flex="top center-x center-y" container="" edge="smooth">
           <Table route="/user/channels/rankedByMessages" labels={["#", "Channel", "Your Messages Count"]} />
         </section>
-        <section flex="top center-x center-y" container="" edge="smooth" id="words-table">
+        <section flex="top center-x center-y" container="" edge="smooth">
           <Table route="/user/words/occurences" labels={["#", "Words", "Occurences"]} />
         </section>
       </main>

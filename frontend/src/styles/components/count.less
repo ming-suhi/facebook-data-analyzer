@@ -8,5 +8,18 @@
 
   > :nth-child(1) {
     margin-bottom: 10px;
+    font-weight: bold;
+  }
+}
+
+[theme-color="dark"] .count {
+  > :nth-child(1) {
+    color: @dark-theme[text-highlight];
+  }
+}
+
+[theme-color="light"] .count {
+  > :nth-child(1) {
+    color: @light-theme[text-highlight];
   }
 }

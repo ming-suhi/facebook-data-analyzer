@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 // Skeleton for table
 class TableSkeleton extends React.Component {
-
   render() {
     return (
       <div grid="" className="table-skeleton">
@@ -130,7 +129,10 @@ class Table extends React.Component {
   render() {
     return (
       <div flex="top center-x center-y">
+        {/* Skeleton content */}
         {!this.state?.loaded && <TableSkeleton />}
+
+        {/* Dynamic content */}
         {this.state?.loaded && (
           <table>
             {this.state?.head}

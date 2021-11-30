@@ -47,9 +47,10 @@ router.get('/user/messages/sent-per-hour/chart-data', (req, res) => {
   const title = {display: true, text: "Total Messages Sent Per Hour"};
   const legend = {position: "bottom"};
   const plugins = {legend, title};
+  const responsive = true;
 
   // Build chart
-  const data = {type, data: {labels, datasets}, options: {plugins}};
+  const data = {type, data: {labels, datasets}, options: {plugins, responsive}};
 
   // Send response
   res.send(data);

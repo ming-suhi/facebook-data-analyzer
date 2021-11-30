@@ -1,7 +1,7 @@
 import React from "react";
 
+// Header component
 class Header extends React.Component {
-
   render() {
     return (
       <header flex="left center-y space-between" container="">
