@@ -37,9 +37,9 @@ A. Downloading your data from Facebook
 B. Using this project
 1. Clone this project by running `git clone https://github.com/ming-suhi/facebook-data-analyzer.git` 
 2. Go to project directory
-3. Create a `.env` file and store the extracted folder path(please refer to `example.env` for example)
-4. Install dependencies by running `npm i` in the project directory
-5. Finally, run this project with `npm run start`, and you can view it in a browser by going typing `localhost:8000` in the url field.
+3. Create a `.env` file inside `backend` folder and store the extracted folder path(please refer to `example.env` for example)
+4. Install dependencies by running `npm i` in the project root directory
+5. Finally, run this project with `npm run start` in project root directory, and you can view it in a browser by going typing `localhost:3000` in the url field.
 
 # Contributing
 ## A. Issues

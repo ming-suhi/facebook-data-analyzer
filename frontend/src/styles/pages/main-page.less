@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-@import "definitions.less";
-@import "tags.less";
-@import "properties.less";
-
-body {
+#main-page {
+  width: 100%;
+  min-height: 100%;
   @media @desktop, @min-desktop {
     grid-template-areas: 
       "a a a"
@@ -19,6 +16,8 @@ body {
 
   > header { 
     grid-area: a;
+    height: 75px;
+    padding: 0 20px;
   };
 
   > main { 
@@ -29,10 +28,20 @@ body {
 
   > footer { 
     grid-area: c; 
+    height: 75px;
   };
+
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  nav > a {
+    margin: 0 20px;
+  }
 }
 
-main {
+#main-page #main-container {
   @media @desktop, @min-desktop {
     grid-template-areas: 
       "a a"
@@ -44,13 +53,6 @@ main {
   @media @tablet, @mobile {
     grid-template-areas: "a" "b" "c" "d" "e";
   };
-
-  grid-template-areas: 
-    "a a"
-    "b b"
-    "c c"
-    "d e"
-  ;
 
   gap: 10px;
   
@@ -77,25 +79,4 @@ main {
   > :nth-child(5) { 
     grid-area: e;
   };
-}
-
-table {
-  border-spacing: 15px 50px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#loading {
-  z-index: 1;
-  position: fixed; 
-  width: 100%;
-  height: 100%;
-}
-
-[state~="loading"] {
-  overflow-y: hidden;
-}
-
-[state~="loaded"] {
-  overflow-y: scroll;
 }

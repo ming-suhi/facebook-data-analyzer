@@ -6,20 +6,25 @@ const router = express.Router();
 
 // Create client
 const client = new Client();
+const messagesEncountered = client.messagesEncountered;
+const messagesSent = client.messagesSent;
+const messagesReceived = client.messagesReceived;
+const messagesSentPerHour = client.messagesSentPerHour;
+const messagesSentPerYear = client.messagesSentPerYear;
 
 // No of messages encountered 
 router.get('/user/messages/encountered', (req, res) => {
-  res.send(client.messagesEncountered.toString());
+  res.send(messagesEncountered.toString());
 });
 
 // No of messages sent
 router.get('/user/messages/sent', (req, res) => {
-  res.send(client.messagesSent.toString());
+  res.send(messagesSent.toString());
 });
 
 // No of messages received
 router.get('/user/messages/received', (req, res) => {
-  res.send(client.messagesReceived.toString());
+  res.send(messagesReceived.toString());
 });
 
 // Hours by no of messages sent
@@ -29,10 +34,10 @@ router.get('/user/messages/sent-per-hour/chart-data', (req, res) => {
   const type = "bar";
 
   // Define datas
-  const labels = client.messagesSentPerHour.map(hour => hour.label);
+  const labels = messagesSentPerHour.map(hour => hour.label);
   const datasets = [{
     label: "Messages Sent",
-    data: client.messagesSentPerHour.map(hour => hour.count),
+    data: messagesSentPerHour.map(hour => hour.count),
     backgroundColor: "rgba(51, 119, 191, 0.2)",
     borderColor: "rgba(51, 119, 191, 1)",
     borderWidth: 1
@@ -42,9 +47,10 @@ router.get('/user/messages/sent-per-hour/chart-data', (req, res) => {
   const title = {display: true, text: "Total Messages Sent Per Hour"};
   const legend = {position: "bottom"};
   const plugins = {legend, title};
+  const responsive = true;
 
   // Build chart
-  const data = {type, data: {labels, datasets}, options: {plugins}};
+  const data = {type, data: {labels, datasets}, options: {plugins, responsive}};
 
   // Send response
   res.send(data);
@@ -57,10 +63,10 @@ router.get('/user/messages/sent-per-year/chart-data', (req, res) => {
   const type = "bar";
 
   // Define datas
-  const labels = client.messagesSentPerYear.map(year => `${year.name}`);
+  const labels = messagesSentPerYear.map(year => `${year.name}`);
   const datasets = [{
     label: "Messages Sent",
-    data: client.messagesSentPerYear.map(year => year.count),
+    data: messagesSentPerYear.map(year => year.count),
     backgroundColor: "rgba(51, 119, 191, 0.2)",
     borderColor: "rgba(51, 119, 191, 1)",
     borderWidth: 1

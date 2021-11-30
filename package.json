@@ -1,24 +1,16 @@
 {
   "name": "@ming-suhi/facebook-data-analyzer",
   "description": "Take a peek to what have been your Facebook life",
-  "version": "1.1.0",
-  "main": "src/server.js",
-  "scripts": {
-    "compile": "lessc src/styles/styles.less src/styles/styles.css",
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-  },
-  "keywords": [],
+  "version": "1.2.0",
   "author": "明suhi",
   "license": "MIT",
+  "private": true,
   "dependencies": {
-    "chart.js": "^3.5.1",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "concurrently": "^6.4.0"
   },
-  "devDependencies": {
-    "less": "^4.1.2",
-    "less-watch-compiler": "^1.16.3",
-    "nodemon": "^2.0.13"
+  "scripts": {
+    "postinstall": "(cd frontend && npm i) && (cd ../backend && npm i)",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\"",
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
   }
 }
