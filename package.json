@@ -1,7 +1,7 @@
 {
   "name": "@ming-suhi/facebook-data-analyzer",
   "description": "Take a peek to what have been your Facebook life",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "明suhi",
   "license": "MIT",
   "private": true,
