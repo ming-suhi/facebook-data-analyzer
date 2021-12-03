@@ -55,6 +55,10 @@ export class Folder {
   constructor(path: string) {
     this.path = resolve(path);
     this.folders = getFolderPaths(path).map(path => new Folder(path));
-    this.files = getFilePaths(path).map(path => require(path));
+    this.files = getFilePaths(path).map(path => {
+      if(path.endsWith('.js') || path.endsWith('.json')) {
+        return (require(path));
+      }
+    });
   }
 }

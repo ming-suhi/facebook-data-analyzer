@@ -16,7 +16,7 @@ export type rawMessage = {
   /** 
    * The content of the message 
    */
-  content: string
+  content?: string
 }
 
 
