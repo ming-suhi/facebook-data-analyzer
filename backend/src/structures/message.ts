@@ -45,7 +45,7 @@ const getStringWordOccurences = (string: string) => {
 const getArrayWordOccurences = (array: string[]) => {
   const occurences: countObject<string>[] = [];
   for (let occurence of array) {
-    mergeCountObjectArrays(getStringWordOccurences(occurence), occurences);
+    mergeCountObjectArrays(occurences, getStringWordOccurences(occurence));
   }
   return occurences.sort((a, b) => b.count - a.count);
 }
@@ -84,7 +84,7 @@ export class Message {
     this.date = new Date(message.timestamp_ms);
     this.year = this.date.getFullYear();
     this.hour = this.date.getHours();
-    this.content = message.content;
+    this.content = message.content || "";
   }
 }
 
@@ -93,7 +93,7 @@ export class Message {
  * Get a list of hours(0 - 24) and the number of messages sent that hour.
  * @param messages An array of messages
  */
- const getMessageCountPerHour = (messages: Message[]) => {
+const getMessageCountPerHour = (messages: Message[]) => {
   const hours: countObject<number>[] = [];
   for (let message of messages) {
     const reference = hours.find(hour => hour.name == message.hour);
@@ -135,10 +135,6 @@ export class Messages {
    */
   readonly wordCount: number;
   /** 
-   * An array of words and their total number of occurences 
-   */
-  readonly wordOccurences: countObject<string>[];
-  /** 
    * An array of hours(0 - 24) and the number of messages sent that hour 
    */
   readonly messageCountPerHour: countObject<number>[];
@@ -153,15 +149,20 @@ export class Messages {
     this.messages = messages;
     this.count = messages.length;
     this.wordCount = getArrayWordCount(messages.map(message => message.content));
-    this.wordOccurences = getArrayWordOccurences(messages.map(message => message.content));
     this.messageCountPerHour = getMessageCountPerHour(messages);
     this.messageCountPerYear = getMessageCountPerYear(messages);
   }
   /**
-   * Get a new group of messages filtered by sender
-   * @param name The name of sender
+   * An array of all words sent and how many times it was use
    */
-  filterSender(name: string) {
+  get wordOccurences() {
+    return getArrayWordOccurences(this.messages.map(message => message.content));
+  }
+  /**
+  * Get a new group of messages filtered by sender
+  * @param name The name of sender
+  */
+  filterBySender(name: string) {
     return new Messages(this.messages.filter(message => message.sender == name));
   }
 }
@@ -171,6 +172,6 @@ export class Messages {
  * Convert an array of raw messages to an array of messages
  * @param rawMessages An array of raw messages
  */
- export const convertRawMessages = (rawMessages: rawMessage[]) => {
+export const convertRawMessages = (rawMessages: rawMessage[]) => {
   return rawMessages.map(rawMessage => new Message(rawMessage));
 }
