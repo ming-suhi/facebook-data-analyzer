@@ -5,7 +5,7 @@ import { countObject, mergeCountObjectArrays } from "./count";
  * Get the number of words from a string.
  * @param string A string
  */
-const getStringWordCount = (string: string) => {
+export const getStringWordCount = (string: string) => {
   return string.split(" ")?.length || 0;
 }
 
@@ -14,7 +14,7 @@ const getStringWordCount = (string: string) => {
  * Get the total number of words from an array of strings. 
  * @param array An array of string
  */
-const getArrayWordCount = (array: Array<string>) => {
+export const getArrayWordCount = (array: Array<string>) => {
   var count = 0;
   for (let string of array) {
     count = count + getStringWordCount(string);
@@ -27,7 +27,7 @@ const getArrayWordCount = (array: Array<string>) => {
  * Get a list of words that occur on a string and how many times it occurs.
  * @param string A string
  */
-const getStringWordOccurences = (string: string) => {
+export const getStringWordOccurences = (string: string) => {
   const occurences: countObject<string>[] = [];
   const words = string.split(" ");
   for (let word of words) {
@@ -42,7 +42,7 @@ const getStringWordOccurences = (string: string) => {
  * Get a list of words that occur on a string on an array and how many times it occurs.
  * @param array An array
  */
-const getArrayWordOccurences = (array: string[]) => {
+export const getArrayWordOccurences = (array: string[]) => {
   const occurences: countObject<string>[] = [];
   for (let occurence of array) {
     mergeCountObjectArrays(occurences, getStringWordOccurences(occurence));
@@ -90,10 +90,19 @@ export class Message {
 
 
 /**
+ * Convert an array of raw messages to an array of messages
+ * @param rawMessages An array of raw messages
+ */
+ export const convertRawMessages = (rawMessages: rawMessage[]) => {
+  return rawMessages.map(rawMessage => new Message(rawMessage));
+}
+
+
+/**
  * Get a list of hours(0 - 24) and the number of messages sent that hour.
  * @param messages An array of messages
  */
-const getMessageCountPerHour = (messages: Message[]) => {
+export const getMessageCountPerHour = (messages: Message[]) => {
   const hours: countObject<number>[] = [];
   for (let message of messages) {
     const reference = hours.find(hour => hour.name == message.hour);
@@ -107,7 +116,7 @@ const getMessageCountPerHour = (messages: Message[]) => {
  * Get a list of years and the number of messages sent that year.
  * @param messages An array of messages
  */
-const getMessageCountPerYear = (messages: Message[]) => {
+export const getMessageCountPerYear = (messages: Message[]) => {
   const years: countObject<number>[] = [];
   for (let message of messages) {
     const reference = years.find(year => year.name == message.year);
@@ -165,13 +174,4 @@ export class Messages {
   filterBySender(name: string) {
     return new Messages(this.messages.filter(message => message.sender == name));
   }
-}
-
-
-/**
- * Convert an array of raw messages to an array of messages
- * @param rawMessages An array of raw messages
- */
-export const convertRawMessages = (rawMessages: rawMessage[]) => {
-  return rawMessages.map(rawMessage => new Message(rawMessage));
 }
