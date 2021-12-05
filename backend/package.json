@@ -4,6 +4,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
+    "postinstall": "npm run build",
     "start": "node dist/index.js",
     "dev": "nodemon dist/index.js",
     "test": "jest",
