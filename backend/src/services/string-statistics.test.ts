@@ -1,20 +1,13 @@
-import { rawMessage } from "./raw";
-import { 
-  convertRawMessages,
-  getArrayWordCount, 
-  getArrayWordOccurences, 
-  getMessageCountPerHour, 
-  getMessageCountPerYear, 
-  getStringWordCount, 
-  getStringWordOccurences
-} from "./message";
+import { getStringWordCount, getArrayWordCount, getStringWordOccurences, getArrayWordOccurences } from "./string-statistics";
 
-describe("Message statistics functions", () => {
+describe("String statistics", () => {
 
   const stringOne = "I am a six words string";
   const stringTwo = "I believe I am an eight words string";
 
   test("getArrayWordCount function", () => {
+    expect(getStringWordCount("")).toEqual(0);
+    expect(getStringWordCount("One")).toEqual(1);
     expect(getStringWordCount(stringOne)).toEqual(6);
     expect(getStringWordCount(stringTwo)).toEqual(8);
   });
@@ -48,30 +41,3 @@ describe("Message statistics functions", () => {
     ]);
   });
 });
-
-
-
-describe("Message class functions", () => {
-
-  const rawMessageTwo: rawMessage = {
-    sender_name: "Sender Kun",
-    timestamp_ms: 1638598670815,
-    content: "Testing testing"
-  };
-  
-  const rawMessageOne: rawMessage = {
-    sender_name: "Sender San",
-    timestamp_ms: 1638598592802,
-    content: "Ping received"
-  };
-
-  test("getMessageCountPerHour function", () => {
-    const messages = convertRawMessages([rawMessageOne, rawMessageTwo]);
-    expect(getMessageCountPerHour(messages)).toEqual([{name: 14, count: 2}]);
-  });
-
-  test("getMessageCountPerYear function", () => {
-    const messages = convertRawMessages([rawMessageOne, rawMessageTwo]);
-    expect(getMessageCountPerYear(messages)).toEqual([{name: 2021, count: 2}]);
-  });
-})

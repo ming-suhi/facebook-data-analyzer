@@ -1,6 +1,7 @@
 import { Folder } from './file-system';
 import { rawChannel } from './raw';
-import { convertRawMessages, Messages } from './message';
+import Message from './message';
+import Messages from './messages';
 
 
 /**
@@ -35,7 +36,7 @@ export class Channel {
     const files: rawChannel[] = folder.files;
     this.name = files[0].title;
     this.type = files[0].thread_type;
-    this.messages = new Messages(flattenArray(files.map((file: rawChannel) => convertRawMessages(file.messages))));
+    this.messages = new Messages(flattenArray(files.map((file: rawChannel) => file.messages.map(rawMessage => new Message(rawMessage)))));
   }
   /**
    * Get a participant by name

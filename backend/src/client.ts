@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { Inbox } from './structures/channel';
-import { countObject, mergeCountObjectArrays } from "./structures/count";
+import { countObject, mergeCountObjectArrays } from "./services/statistics";
 
 /**
  * Get the sum of numbers inside an array.
@@ -75,8 +75,8 @@ export class Client {
     this.wordsSentCount = getSumOfNumbersArray(this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.wordCount || 0));
     this.messagesReceivedCount = this.totalMessages - this.messagesSentCount;
     this.wordsOccurences = this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.wordOccurences || []).reduce((a, b) => mergeCountObjectArrays(a, b)).slice(0, 100);
-    this.messagesSentPerHour = this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.messageCountPerHour || []).reduce((a, b) => mergeCountObjectArrays(a, b)).sort((a, b) => b.name - a.name);
-    this.messagesSentPerYear = this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.messageCountPerYear || []).reduce((a, b) => mergeCountObjectArrays(a, b)).sort((a, b) => b.name - a.name);
+    this.messagesSentPerHour = this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.messageCountPerHour || []).reduce((a, b) => mergeCountObjectArrays(a, b));
+    this.messagesSentPerYear = this.inbox.channels.map(channel => channel.getParticipant(this.name)?.messages?.messageCountPerYear || []).reduce((a, b) => mergeCountObjectArrays(a, b));
     this.channelsByYourSentMessages = this.inbox.channels.map(channel => ({name: channel.name, count: channel.getParticipant(this.name)?.messages?.count || 0})).sort((a, b) => b.count - a.count);
   }
 }
