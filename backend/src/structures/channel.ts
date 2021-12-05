@@ -5,15 +5,6 @@ import Messages from './messages';
 
 
 /**
- * Flatten an array by one branch
- * @param arrays An array of array
- */
-const flattenArray = (arrays: any[][]) => {
-  return new Array().concat(...arrays);
-}
-
-
-/**
  * Represents a channel.
  */
 export class Channel {
@@ -36,7 +27,7 @@ export class Channel {
     const files: rawChannel[] = folder.files;
     this.name = files[0].title;
     this.type = files[0].thread_type;
-    this.messages = new Messages(flattenArray(files.map((file: rawChannel) => file.messages.map(rawMessage => new Message(rawMessage)))));
+    this.messages = new Messages(files.map((file: rawChannel) => file.messages.map(rawMessage => new Message(rawMessage))).flat());
   }
   /**
    * Get a participant by name

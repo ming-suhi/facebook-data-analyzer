@@ -21,5 +21,5 @@ export const mergeCountObjectArrays = <TName>(target: countObject<TName>[], sele
     const reference = target.find(object => object.name == child.name)!;
     (!reference) ? target.push(child) : reference.count = reference.count + child.count;
   }
-  return target.sort((a, b) => b.count - a.count);
+  return target;
 }
