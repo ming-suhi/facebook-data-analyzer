@@ -16,7 +16,9 @@ jobs:
         node-version: 16.6.1
 
     - name: Install Dependencies
+      working-directory: ./backend
       run: npm i
 
     - name: Tests
-      run: cd ../backend && npm run test
+      working-directory: ./backend
+      run: npm run test
