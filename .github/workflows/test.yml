@@ -18,6 +18,11 @@ jobs:
     - name: Install Dependencies
       working-directory: ./backend
       run: npm i
+      
+    - name: Setup Timezone
+      uses: zcong1993/setup-timezone@master
+      with:
+        timezone: Asia/Philippine
 
     - name: Tests
       working-directory: ./backend
