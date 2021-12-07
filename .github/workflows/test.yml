@@ -20,9 +20,9 @@ jobs:
       run: npm i
       
     - name: Setup Timezone
-      uses: zcong1993/setup-timezone@master
+      uses: szenius/set-timezone@v1.0
       with:
-        timezone: Asia/Philippine
+        timezoneLinux: "Asia/Singapore"
 
     - name: Tests
       working-directory: ./backend
