@@ -1,0 +1,112 @@
+[flex] {
+  display: flex;
+}
+
+[flex~="left"] {
+  flex-direction: row;
+}
+
+[flex~="right"] {
+  flex-direction: row-reverse;
+}
+
+[flex~="left"], [flex~="right"] {
+  &[flex~="center-y"] {
+    align-items: center;
+  }
+
+  &[flex~="center-x"] {
+    justify-content: center;
+  }
+}
+
+[flex~="top"] {
+  flex-direction: column;
+}
+
+[flex~="bottom"] {
+  flex-direction: column-reverse;
+}
+
+[flex~="top"], [flex~="bottom"] {
+  &[flex~="center-y"] {
+    justify-content: center;
+  }
+
+  &[flex~="center-x"] {
+    align-items: center;
+  }
+}
+
+[flex~="space-between"] {
+  justify-content: space-between;
+}
+
+[flex~="space-evenly"] {
+  justify-content: space-evenly;
+}
+
+[flex~="wrap"] {
+  flex-wrap: wrap;
+}
+
+[grid] {
+  display: grid;
+}
+
+[grid~="center"] {
+  justify-items: center;
+  align-items: center;
+}
+
+[block] {
+  display: block;
+}
+
+[edge~="smooth"] {
+  border-radius: 5px;
+}
+
+[edge~="circle"] {
+  border-radius: 100%;
+}
+
+[text~="center"] {
+  text-align: center;
+}
+
+[text~="left"] {
+  text-align: left;
+}
+
+[text~="right"] {
+  text-align: right;
+}
+
+[theme-color="light"] {
+  * {
+    color: @light-theme[text];
+  }
+
+  &[container], [container] {
+    background-color: @light-theme[container];
+  } 
+
+  &[background], [background] {
+    background-color: @light-theme[background];
+  }
+}
+
+[theme-color="dark"] {
+  * {
+    color: @dark-theme[text];
+  }
+
+  &[container], [container] {
+    background-color: @dark-theme[container];
+  } 
+
+  &[background], [background] {
+    background-color: @dark-theme[background];
+  }
+}

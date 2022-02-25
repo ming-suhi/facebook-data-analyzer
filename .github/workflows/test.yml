@@ -1,0 +1,29 @@
+name: 🧪 Services Testing
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.6.1
+
+    - name: Install Dependencies
+      working-directory: ./backend
+      run: npm i
+      
+    - name: Setup Timezone
+      uses: szenius/set-timezone@v1.0
+      with:
+        timezoneLinux: "Asia/Singapore"
+
+    - name: Tests
+      working-directory: ./backend
+      run: npm run test

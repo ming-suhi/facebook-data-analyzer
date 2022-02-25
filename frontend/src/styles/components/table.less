@@ -1,0 +1,19 @@
+.table-skeleton {
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 35px 200px 100px;
+  grid-template-rows: 35px 35px 35px 35px 35px;
+  gap: 15px;
+}
+
+table {
+  border-spacing: 15px 50px;
+}
+
+[theme-color="dark"] th {
+  color: @dark-theme[text-highlight];
+}
+
+[theme-color="light"] th {
+  color: @light-theme[text-highlight];
+}
