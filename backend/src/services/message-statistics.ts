@@ -21,7 +21,6 @@ export const getMessageCountPerHour = (messages: Message[]) => {
   return hours;
 }
 
-
 /**
  * Get a list of years and the number of messages sent that year.
  * @param messages An array of messages

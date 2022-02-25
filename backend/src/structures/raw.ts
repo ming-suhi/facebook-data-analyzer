@@ -19,7 +19,6 @@ export type rawMessage = {
   content?: string
 }
 
-
 /** 
  * The participant object from json file.
  */
@@ -29,7 +28,6 @@ export type rawParticipant = {
    */
   name: string
 }
-
 
 /**
  * The channel object from json file.

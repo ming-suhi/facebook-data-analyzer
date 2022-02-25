@@ -3,7 +3,6 @@ import { rawChannel } from './raw';
 import Message from './message';
 import Messages from './messages';
 
-
 /**
  * Represents a channel.
  */
@@ -24,10 +23,10 @@ export class Channel {
    * @param folder The folder that store the channel datas
    */
   constructor(folder: Folder) {
-    const files: rawChannel[] = folder.files;
+    const files = folder.files as rawChannel[];
     this.name = files[0].title;
     this.type = files[0].thread_type;
-    this.messages = new Messages(files.map((file: rawChannel) => file.messages.map(rawMessage => new Message(rawMessage))).flat());
+    this.messages = new Messages(files.map(file => file.messages.map(rawMessage => new Message(rawMessage))).flat());
   }
   /**
    * Get a participant by name
@@ -37,7 +36,6 @@ export class Channel {
     return new Participant(name, this.messages.filterBySender(name));
   }
 }
-
 
 /**
  * Represents a participant in a channel.
@@ -61,7 +59,6 @@ export class Participant {
     this.messages = messages;
   }
 }
-
 
 /**
  * Represents the inbox.

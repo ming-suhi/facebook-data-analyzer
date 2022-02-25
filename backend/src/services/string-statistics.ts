@@ -4,23 +4,7 @@ import { countObject, mergeCountObjectArrays } from "./statistics";
  * Get the number of words from a string.
  * @param string A string
  */
- export const getStringWordCount = (string: string) => {
-  return (string.match(/\w+/g) || []).length;
-}
-
-
-/**
- * Get the total number of words from an array of strings. 
- * @param array An array of string
- */
-export const getArrayWordCount = (array: Array<string>) => {
-  var count = 0;
-  for (let string of array) {
-    count = count + getStringWordCount(string);
-  }
-  return count;
-}
-
+export const getStringWordCount = (string: string) => (string.match(/\w+/g) || []).length;
 
 /**
  * Get a list of words that occur on a string and how many times it occurs.
@@ -35,7 +19,6 @@ export const getStringWordOccurences = (string: string) => {
   }
   return occurences.sort((a, b) => b.count - a.count);
 }
-
 
 /**
  * Get a list of words that occur on a string on an array and how many times it occurs.

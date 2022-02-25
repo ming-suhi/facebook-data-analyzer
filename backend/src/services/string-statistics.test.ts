@@ -1,4 +1,4 @@
-import { getStringWordCount, getArrayWordCount, getStringWordOccurences, getArrayWordOccurences } from "./string-statistics";
+import { getStringWordCount, getStringWordOccurences, getArrayWordOccurences } from "./string-statistics";
 
 describe("String statistics", () => {
 
@@ -10,10 +10,6 @@ describe("String statistics", () => {
     expect(getStringWordCount("One")).toEqual(1);
     expect(getStringWordCount(stringOne)).toEqual(6);
     expect(getStringWordCount(stringTwo)).toEqual(8);
-  });
-
-  test("getArrayWordCount function", () => {
-    expect(getArrayWordCount([stringOne, stringTwo])).toEqual(6 + 8);
   });
 
   test("getStringWordOccurences function", () => {
