@@ -1,36 +1,29 @@
 import { readdirSync, lstatSync } from "fs";
 import { resolve } from "path";
 
-
 /**
  * Get the path of all folders inside a given path
  * @param path A folder path
  */
-const getFolderPaths = (path: string) => {
-  const folders = [];
+function* folderPathsGenerator(path: string) {
   for (let content of readdirSync(path)) {
     const contentPath = resolve(path, content);
     const isDirectory = lstatSync(contentPath).isDirectory();
-    if(isDirectory) folders.push(contentPath);
+    if(isDirectory) yield contentPath
   }
-  return folders;
 }
-
 
 /**
  * Get the path of all files inside a given path
  * @param path A folder path
  */
-const getFilePaths = (path: string) => {
-  const files = [];
+function* filePathsGenerator(path: string) {
   for (let content of readdirSync(path)) {
     const contentPath = resolve(path, content);
     const isDirectory = lstatSync(contentPath).isDirectory();
-    if(!isDirectory) files.push(contentPath);
+    if(!isDirectory) yield contentPath;
   }
-  return files;
 }
-
 
 /**
  * Folder structure.
@@ -54,11 +47,9 @@ export class Folder {
    */
   constructor(path: string) {
     this.path = resolve(path);
-    this.folders = getFolderPaths(path).map(path => new Folder(path));
-    this.files = getFilePaths(path).map(path => {
-      if(path.endsWith('.js') || path.endsWith('.json')) {
-        return (require(path));
-      }
+    this.folders = [...folderPathsGenerator(path)].map(path => new Folder(path));
+    this.files = [...filePathsGenerator(path)].map(path => {
+      if(path.endsWith('.js') || path.endsWith('.json')) return (require(path));
     });
   }
 }

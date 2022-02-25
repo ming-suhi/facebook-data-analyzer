@@ -1,6 +1,6 @@
 import { countObject } from "../services/statistics";
 import Message from "./message";
-import { getArrayWordCount, getArrayWordOccurences } from "../services/string-statistics";
+import { getArrayWordOccurences } from "../services/string-statistics";
 import { getMessageCountPerHour, getMessageCountPerYear } from "../services/message-statistics";
 
 /**
@@ -34,7 +34,7 @@ export default class Messages {
   constructor(messages: Message[]) {
     this.messages = messages;
     this.count = messages.length;
-    this.wordCount = getArrayWordCount(messages.map(message => message.content));
+    this.wordCount = messages.map(message => message.wordCount).reduce((a, b) => a + b, 0);
     this.messageCountPerHour = getMessageCountPerHour(messages);
     this.messageCountPerYear = getMessageCountPerYear(messages);
   }
