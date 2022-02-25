@@ -8,7 +8,6 @@ export type countObject<TName> = {
   count: number
 };
 
-
 /**
  * Merge two arrays of count objects. Combine the counts of objects with the same name present in both array.
  * It is suggested to put the bigger array as `target` and the `smaller` as selected.
